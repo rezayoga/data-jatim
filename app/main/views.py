@@ -5,10 +5,14 @@ from app.models import Ptsl
 
 @main_blueprint.route('/ptsl', defaults={'year': None, 'month': None})
 @main_blueprint.route('/ptsl', defaults={'month': None})
-@main_blueprint.route('/ptsl/<string:year>/<string:month>')
+@main_blueprint.route('/ptsl/<string:year>/<string:month>/')
 def ptsl(year, month):
     data = Ptsl.query.all()
-    current_app.logger.info("Index page loading")
+    if year != None and month != None:
+        data = Ptsl.query.filter_by(y=year, m=month).all()
+    elif year != None and month == None:
+        data = Ptsl.query.filter_by(y=year).all()
+    #current_app.logger.info("Index page loading")
     return render_template('index.html', data=data)
 
 
