@@ -8,7 +8,7 @@ def index():
     #data = Ptsl.query.all()
     current_app.logger.info("Index page loading")
     #return render_template('main/index.html', data=data)
-    return "Hello, World!"
+    return "Hello, World 123!"
 
 
 @main_blueprint.route('/admin')
