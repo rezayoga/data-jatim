@@ -7,7 +7,7 @@ from app.models import Ptsl
 def ptsl(year, month):
     data = Ptsl.query.all()
     current_app.logger.info("Index page loading")
-    return render_template('main/index.html', data=data)
+    return render_template('index.html', data=data)
 
 
 @main_blueprint.route('/admin')
