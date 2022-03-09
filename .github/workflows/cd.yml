@@ -1,0 +1,52 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CD
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: 
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "cd"
+  cd-pipeline:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Deploy to my server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_CREDENTIAL_HOSTNAME }}
+          username: ${{ secrets.SERVER_CREDENTIAL_USERNAME }}
+          key: ${{ secrets.SERVER_CREDENTIAL_PRIVATE_KEY }}
+          port: 2211
+          passphrase: ${{ secrets.SERVER_CREDENTIAL_PASSPHRASE }}
+          script_stop: true
+          debug: true
+          script: |
+            cd /home/rezayogaswara/python_projects/data-jatim
+            pwd
+            ls -ahl
+            echo ----------------------------------------------
+            git pull origin main
+            echo ----------------------------------------------
+            git log --all --decorate --oneline --graph
+            echo ----------------------------------------------
+            source env/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            echo ----------------------------------------------
+            sudo systemctl stop datajatim
+            sudo systemctl start datajatim
+            sudo systemctl status datajatim
