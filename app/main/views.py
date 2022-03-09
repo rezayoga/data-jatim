@@ -3,6 +3,8 @@ from flask import render_template, request, redirect, url_for, current_app, abor
 from app.models import Ptsl
 
 
+@main_blueprint.route('/ptsl', defaults={'year': None, 'month': None})
+@main_blueprint.route('/ptsl', defaults={'month': None})
 @main_blueprint.route('/ptsl/<string:year>/<string:month>')
 def ptsl(year, month):
     data = Ptsl.query.all()
