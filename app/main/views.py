@@ -12,8 +12,8 @@ time.tzset()
 
 
 @main_blueprint.route('/ptsl', defaults={'year': None, 'month': None, 'date': None})
-@main_blueprint.route('/ptsl/<string:year>/<string:month>',  defaults={'date': None})
-@main_blueprint.route('/ptsl/<string:year>/<string:month>/<string:date>')
+@main_blueprint.route('/ptsl/<year>/<month>',  defaults={'date': None})
+@main_blueprint.route('/ptsl/<year>/<month>/<date>')
 def ptsl(year=None, month=None, date=None):
     data = Ptsl.query.filter_by(y=time.strftime(
         '%Y'), m=time.strftime('%m'), d=time.strftime('%d')).all()
