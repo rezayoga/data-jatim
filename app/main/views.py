@@ -23,6 +23,7 @@ def ptsl(year=None, month=None, date=None):
     elif year != None and month == None and date == None:
         abort(404)
     #current_app.logger.info("Index page loading")
+    abort(404)
     return render_template('index.html', data=data)
 
 
