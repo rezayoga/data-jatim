@@ -8,7 +8,6 @@ from asyncio.log import logger
 import os
 from flask import Flask, render_template
 from flask_mail import Mail
-from celery import Celery  # NEW!!!!!
 from config import Config  # NEW!!!!!
 import logging
 from flask.logging import default_handler
@@ -22,12 +21,9 @@ import click
 ### Flask extension objects instantiation ###
 mail = Mail()
 db = SQLAlchemy()
-### Instantiate Celery ###
-celery = Celery(__name__, broker=Config.CELERY_BROKER_URL,
-                result_backend=Config.CELERY_RESULT_BACKEND)  # NEW!!!!!
 
 bugsnag.configure(
-    api_key="809b696a1aee8628288d17b65985c198",
+    api_key="95c0c5a57848951ea02a98a47616df65",
     project_root=os.getcwd(),
 )
 
@@ -45,9 +41,6 @@ def create_app():
     CONFIG_TYPE = os.getenv('CONFIG_TYPE', default='config.DevelopmentConfig')
     app.config.from_object(CONFIG_TYPE)
 
-    # Configure celery
-    celery.conf.update(app.config)              # NEW!!!!!
-
     # Register blueprints
     register_blueprints(app)
 
@@ -62,34 +55,13 @@ def create_app():
 
     # Register SQLAlchemy
     initialize_database(app)
-
-    @app.cli.command("create-user")
-    @click.argument("username", nargs=1)
-    @click.argument("fullname", nargs=1)
-    @click.argument("password", nargs=1)
-    def create_user(username, fullname, password):
-        """Create a user."""
-        print("Creating user: {}, {}, {}".format(username, fullname, password))
-        from app.models import User
-        from app.models import db
-        db.create_all()
-        user = User(username=username, fullname=fullname, password=password)
-        db.session.add(user)
-        db.session.commit()
-        print("Created user: {}".format(user))
-
     return app
 
 
 ### Helper Functions ###
 def register_blueprints(app):
-    from app.auth import auth_blueprint
     from app.main import main_blueprint
-    from app.api import api_blueprint
-
-    app.register_blueprint(api_blueprint, url_prefix='/api')
-    app.register_blueprint(auth_blueprint, url_prefix='/users')
-    app.register_blueprint(main_blueprint)
+    app.register_blueprint(main_blueprint, url_prefix='/')
 
 
 def initialize_extensions(app):
