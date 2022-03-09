@@ -37,7 +37,8 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0')
+    CELERY_BROKER_URL = os.getenv(
+        'CELERY_BROKER_URL', 'redis://localhost:6379/0')
     CELERY_RESULT_BACKEND = os.getenv(
         'CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
     JSONIFY_PRETTYPRINT_REGULAR = True
@@ -45,8 +46,9 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'dev.db')
-   # SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/dev_db"
+    #SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'dev.db')
+    #SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/dev_db"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim"
 
 
 class TestingConfig(Config):

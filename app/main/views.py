@@ -3,12 +3,11 @@ from flask import render_template, request, redirect, url_for, current_app, abor
 from app.models import Ptsl
 
 
-@main_blueprint.route('/')
-def index():
-    #data = Ptsl.query.all()
+@main_blueprint.route('/ptsl/<string:year>/<string:month>')
+def ptsl(year, month):
+    data = Ptsl.query.all()
     current_app.logger.info("Index page loading")
-    #return render_template('main/index.html', data=data)
-    return "Hello, World 123!"
+    return render_template('main/index.html', data=data)
 
 
 @main_blueprint.route('/admin')
