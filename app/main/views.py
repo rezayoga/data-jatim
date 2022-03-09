@@ -20,6 +20,8 @@ def ptsl(year=None, month=None, date=None):
         data = Ptsl.query.filter_by(y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
+    elif year != None and month == None and date == None:
+        abort(404)
     #current_app.logger.info("Index page loading")
     return render_template('index.html', data=data)
 
