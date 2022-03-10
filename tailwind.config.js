@@ -1,8 +1,7 @@
 // tailwind.config.js
 module.exports = {
   content: [
-    "./app/main/static/**/**/*.{js,ts,jsx,tsx}",
-    "./app/main/static/**/*.{js,ts,jsx,tsx}",
+    "./app/main/templates/*.{html,js}",
   ],
   darkMode: 'media', // or 'media' or 'class'
   //theme: {},
@@ -28,8 +27,7 @@ module.exports = {
       'forest',
       'cupcake',
       'synthwave',
-      'emerald',
-
+      'emerald'
     ],
     base: true,
     utils: true,
