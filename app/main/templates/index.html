@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progres PTSL 2k22</title>
+    <style>
+        @import url("{{ url_for('static', filename='style.css') }}");
+    </style>
 </head>
 
 <body>
-    {% if data|length > 0 %}
+{% if data|length > 0 %}
     {% for result in data %}
-    {{ result.kabupaten_kota }}
+        {{ result.kabupaten_kota }}
     {% endfor %}
-    {% endif %}
+{% endif %}
 </body>
 
 </html>
