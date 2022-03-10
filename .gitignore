@@ -130,3 +130,6 @@ dmypy.json
 
 *.db
 .github
+
+
+node_modules/
