@@ -13,22 +13,8 @@ module.exports = {
     require("daisyui")
   ],
   daisyui: {
-    logs: false,
-    themes: false,
-    // styled: false,
-    // base: false,
-    // utils: false,
-    // rtl: false,
-  },
-  daisyui: {
     styled: true,
-    themes: [
-      'light',
-      'forest',
-      'cupcake',
-      'synthwave',
-      'emerald'
-    ],
+    themes: ["emerald", "light", "cupcake", "bumblebee", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"],
     base: true,
     utils: true,
     logs: true,
