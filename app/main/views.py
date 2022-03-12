@@ -2,7 +2,7 @@ import datetime
 import os
 import time
 
-from flask import render_template, abort
+from flask import render_template, abort, redirect, url_for
 
 from app.models import Ptsl
 from . import main_blueprint
@@ -15,7 +15,7 @@ time.tzset()
 
 @main_blueprint.route('/')
 def index():
-    return render_template('index.html')
+    return redirect(url_for('main.ptsl'))
 
 
 @main_blueprint.route('/ptsl', defaults={'year': None, 'month': None, 'date': None})
