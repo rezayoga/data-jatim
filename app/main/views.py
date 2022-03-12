@@ -13,6 +13,11 @@ os.environ['TZ'] = 'Asia/Jakarta'
 time.tzset()
 
 
+@main_blueprint.route('/')
+def index():
+    return render_template('index.html')
+
+
 @main_blueprint.route('/ptsl', defaults={'year': None, 'month': None, 'date': None})
 @main_blueprint.route('/ptsl/<year>/<month>', defaults={'date': None})
 @main_blueprint.route('/ptsl/<year>/<month>/<date>')
@@ -30,7 +35,7 @@ def ptsl(year=None, month=None, date=None):
     elif year != None and month != None and date == None:
         abort(404)
     # current_app.logger.info("Index page loading")
-    return render_template('index.html', data=data, y=y, m=m, d=d)
+    return render_template('index.html', data=data, y=y, m=m, d=d, base_url='/ptsl')
 
 
 @main_blueprint.route('/admin')
