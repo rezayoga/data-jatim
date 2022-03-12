@@ -10,9 +10,9 @@ module.exports = {
   daisyui: {
     styled: true,
     themes: [
+      "light",
       "emerald",
       "dark",
-      "light",
       "cupcake",
       "bumblebee",
       "corporate",
@@ -44,5 +44,12 @@ module.exports = {
     utils: true,
     logs: true,
     rtl: false,
+  },
+  theme: {
+    extend: {
+      fontFamily: {
+        quicksand: ["Quicksand", "sans-serif"],
+      },
+    },
   },
 };

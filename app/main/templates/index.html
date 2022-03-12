@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="emerald">
 
 <head>
     <meta charset="UTF-8">
@@ -17,10 +17,13 @@
     </style>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
     <script src="https://unpkg.com/flowbite@1.3.4/dist/datepicker.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 
-<body>
-    <div class="card w-full p-5 shadow-xl">
+<body class="font-hubballi">
+    <div class="card w-full p-5">
         <div class="card-body">
             <h2 class="card-title">REALISASI PROGRES PENDAFTARAN TANAH SISTEMATIS LENGKAP (PTSL) RUPIAH MURNI</h2>
             <p>Kanwil BPN Provinsi Jawa Timur per Tanggal {{ d }}-{{ m }}-{{ y }}</p>
@@ -29,14 +32,16 @@
                     <div>
                         <div class="relative">
                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                    </path>
                                 </svg>
                             </div>
-                            <input datepicker datepicker-format="yyyy/mm/dd"
-                                datepicker-autohide type="text" id="datepicker" value="{{y}}/{{m}}/{{d}}"
-                                class="bg-gray-50 border border-gray-200 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-3.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input datepicker datepicker-format="yyyy/mm/dd" datepicker-autohide type="text"
+                                id="datepicker" value="{{y}}/{{m}}/{{d}}"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-3  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Pilih tanggal" />
                         </div>
                     </div>
@@ -78,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="overflow-x-auto overflow-y-auto w-full">
+        <div class="overflow-x-auto w-full drop-shadow-2xl m-2">
             <table class="table table-zebra table-compact w-full">
                 <thead>
                     <tr>
@@ -166,5 +171,4 @@
         </div>
     </div>
 </body>
-
 </html>
