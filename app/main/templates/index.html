@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 
-<body class="font-hubballi">
+<body class="font-quicksand bg-white">
     <div class="card w-full p-5">
         <div class="card-body">
             <h2 class="card-title">REALISASI PROGRES PENDAFTARAN TANAH SISTEMATIS LENGKAP (PTSL) RUPIAH MURNI</h2>
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="overflow-x-auto w-full drop-shadow-2xl m-2">
+        <div class="overflow-x-auto w-full drop-shadow-2xl">
             <table class="table table-zebra table-compact w-full">
                 <thead>
                     <tr>
@@ -139,6 +139,19 @@
                         <td>{{ result.created_at }}</td>
                     </tr>
                     {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="22">
+                            <div class="w-full bg-base-100">
+                                <figure class="w-80 hero container max-w-screen-lg mx-auto flex justify-center">
+                                    <img src="{{ url_for('main.static', filename='images/no-data.png') }}" alt="Shoes" class="object-scale-down">
+                                </figure>
+                                <div class="card-body items-center text-center">
+                                    <h2 class="card-title">Tidak ada data!</h2>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     {% endif %}
                 </tbody>
                 <tfoot>
@@ -171,4 +184,5 @@
         </div>
     </div>
 </body>
+
 </html>
