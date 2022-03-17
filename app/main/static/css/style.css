@@ -2977,6 +2977,11 @@ body[dir="rtl"] .checkbox:checked,
   padding-bottom: 1rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pl-3 {
   padding-left: 0.75rem;
 }
