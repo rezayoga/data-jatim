@@ -77,7 +77,6 @@ def trend(type):
         print("Error: unable to convert the data")
 
     connection.close()
-
     m = NeuralProphet(trend_reg=1,
                       learning_rate=0.01,
                       yearly_seasonality=False,
