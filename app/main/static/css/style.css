@@ -2257,6 +2257,17 @@ html {
   outline-offset: 2px;
 }
 
+.input-ghost {
+  --tw-bg-opacity: 0.05;
+}
+
+.input-ghost:focus {
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
+  box-shadow: none;
+}
+
 .input-disabled, .input[disabled] {
   cursor: not-allowed;
   --tw-border-opacity: 1;
@@ -2773,16 +2784,20 @@ html {
   padding: 0.5rem;
 }
 
+.p-3\.5 {
+  padding: 0.875rem;
+}
+
+.p-2\.5 {
+  padding: 0.625rem;
+}
+
 .pl-3 {
   padding-left: 0.75rem;
 }
 
 .pl-10 {
   padding-left: 2.5rem;
-}
-
-.pl-2 {
-  padding-left: 0.5rem;
 }
 
 .text-center {
