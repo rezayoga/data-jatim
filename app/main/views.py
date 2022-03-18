@@ -96,6 +96,7 @@ def trend(shat, type):
     elif type == 'comps':
         fig = fig_comp
 
+    fig.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
