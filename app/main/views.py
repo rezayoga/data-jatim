@@ -88,11 +88,8 @@ def trend(shat, type):
 
     forecast = m.predict(df=future)
     fig_forecast = m.plot(forecast)
-    fig_forecast.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
     fig_param = m.plot_parameters()
-    fig_param.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
     fig_comp = m.plot_components(forecast)
-    fig_comp.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
 
     if type == 'forecast':
         fig = fig_forecast
@@ -100,6 +97,8 @@ def trend(shat, type):
         fig = fig_param
     elif type == 'comps':
         fig = fig_comp
+
+    fig.suptitle(f"{shat.upper()}", fontsize=16, y=0.8)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
