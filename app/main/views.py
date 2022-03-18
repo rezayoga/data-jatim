@@ -45,8 +45,8 @@ def ptsl(year=None, month=None, date=None):
     return render_template('index.html', data=data, y=y, m=m, d=d, base_url='/ptsl')
 
 
-@main_blueprint.route('/ptsl/graph/<type>')
-def trend(type):
+@main_blueprint.route('/ptsl/graph/<shat>/<type>')
+def trend(shat, type):
     mysql_host = 'localhost'  # 'rezayogaswara.com'
     mysql_port = 3306
     mysql_user = 'root'  # 'reza'
@@ -67,9 +67,7 @@ def trend(type):
     df = None
     try:
         SQL_Query = pd.read_sql_query(
-            '''SELECT
-            puldadis AS y, DATE(created_at) AS ds
-            from tb_progres_ptsl_kanwil WHERE kabupaten_kota = 'Total' ORDER BY id DESC''', connection)
+            f"SELECT {shat} AS y, DATE(created_at) AS ds from tb_progres_ptsl_kanwil WHERE kabupaten_kota = 'Total' ORDER BY id DESC", connection)
         df = pd.DataFrame(SQL_Query, columns=['y', 'ds'])
         print(df)
         print('The data type of df is: ', type(df))
