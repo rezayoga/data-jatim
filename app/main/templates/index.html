@@ -237,23 +237,27 @@
 
     <footer class="footer items-center p-4 bg-neutral text-neutral-content">
         <div class="items-center grid-flow-col">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
                 </path>
             </svg>
             <p>Crafted by: Reza Yogaswara</p>
-            <a href="https://me.rezayogaswara.dev" target="_blank"><svg class="w-5 h-5" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <a href="https://me.rezayogaswara.dev" target="_blank"><svg class="w-5 h-5" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                 </svg>
             </a>
         </div>
-        <div class="grid-flow-col items-center md:place-self-center md:justify-self-end">
+        <div class="grid-flow-col items-center md:place-self-center md:justify-self-end gap-4">
             <p>Built using:</p>
             <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank" rel="noopener noreferrer">
-                <img src="{{ url_for('main.static', filename='images/flask.png') }}" alt="Flask"
-                    class="w-auto h-8">
+                <img src="{{ url_for('main.static', filename='images/flask.png') }}" alt="Flask" class="w-auto h-8">
+            </a>
+            <a href="https://pytorch.org" target="_blank" rel="noopener noreferrer">
+                <img src="{{ url_for('main.static', filename='images/pytorch.png') }}" alt="PyTorch" class="w-auto h-4">
             </a>
             <a href="https://neuralprophet.com" target="_blank" rel="noopener noreferrer">
                 <img src="{{ url_for('main.static', filename='images/neural-prophet.png') }}" alt="NeuralProphet"
