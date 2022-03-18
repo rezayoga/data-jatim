@@ -11,10 +11,10 @@ module.exports = {
     styled: true,
     themes: [
       "light",
-      "emerald",
       "dark",
       "cupcake",
       "bumblebee",
+      "emerald",
       "corporate",
       "synthwave",
       "retro",
