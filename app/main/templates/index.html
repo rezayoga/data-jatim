@@ -46,7 +46,7 @@
                                     placeholder="Pilih tanggal" />
                             </div>
                             -->
-                            <span>Pilih Tanggal</span>
+                            <span>Tanggal</span>
                             <input datepicker datepicker-format="yyyy/mm/dd" datepicker-autohide type="text"
                                 id="datepicker" value="{{y}}/{{m}}/{{d}}" class="input disabled"
                                 placeholder="Pilih tanggal" />
@@ -61,39 +61,49 @@
                             </button>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btn-square" onclick="window.location.href = '{{ base_url }}'">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
-                                </path>
-                            </svg>
-                        </button>
+                    <button class="btn btn-square" onclick="window.location.href = '{{ base_url }}'">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                    </button>
+                    <label class="input-group">
+                        <span>SHAT</span>
+                        <select class="select select-bordered"
+                            onchange="this.options[this.selectedIndex].value && (window.location = '?shat=' + this.options[this.selectedIndex].value);">
+                            <option disabled selected>Pilih</option>
+                            <option {{ 'selected="selected"' if shat == 'puldadis' else pass }} value="puldadis">Puldadis</option>
+                            <option {{ 'selected="selected"' if shat == 'pemberkasan' else pass }} value="pemberkasan">Pemberkasan</option>
+                            <option {{ 'selected="selected"' if shat == 'k1' else pass }} value="k1">K1</option>
+                            <option {{ 'selected="selected"' if shat == 'unggah_bt' else pass }} value="unggah_bt">Unggah BT</option>
+                        </select>
+                    </label>
 
-                        <div class="dropdown dropdown-hover dropdown-end">
-                            <label tabindex="0" class="btn m-1"><svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h16"></path>
-                                </svg></label>
-                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><label for="modal-trend" class="button modal-button"><svg class="w-6 h-6"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                                        </svg>Trend</labe>
-                                </li>
-                                <li><label for="modal-forecast" class="button modal-button"><svg class="w-6 h-6"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
-                                            </path>
-                                        </svg>Forecast</label></li>
-                            </ul>
-                        </div>
+                    <div class="dropdown dropdown-hover dropdown-end">
+                        <label tabindex="0" class="btn btn-square"><svg class="w-6 h-6" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                </path>
+                            </svg></label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><label for="modal-trend" class="button modal-button"><svg class="w-6 h-6" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>Trend</labe>
+                            </li>
+                            <li><label for="modal-forecast" class="button modal-button"><svg class="w-6 h-6" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
+                                        </path>
+                                    </svg>Forecast</label></li>
+                        </ul>
                     </div>
                 </div>
             </div>
