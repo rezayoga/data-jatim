@@ -2,7 +2,7 @@ from . import main_blueprint
 from app.models import Ptsl
 import io
 import random
-from flask import render_template, abort, redirect, url_for, Response
+from flask import render_template, abort, redirect, url_for, Response, request
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import datetime
@@ -42,7 +42,9 @@ def ptsl(year=None, month=None, date=None):
     elif year != None and month != None and date == None:
         abort(404)
     # current_app.logger.info("Index page loading")
-    return render_template('index.html', data=data, y=y, m=m, d=d, base_url='/ptsl')
+    shat = request.args.get('shat') if request.args.get(
+        'shat') != None else 'puldadis'
+    return render_template('index.html', data=data, y=y, m=m, d=d, base_url='/ptsl', shat=shat)
 
 
 @main_blueprint.route('/ptsl/graph/<shat>/<type>')
@@ -86,8 +88,11 @@ def trend(shat, type):
 
     forecast = m.predict(df=future)
     fig_forecast = m.plot(forecast)
+    fig_forecast.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
     fig_param = m.plot_parameters()
+    fig_param.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
     fig_comp = m.plot_components(forecast)
+    fig_comp.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
 
     if type == 'forecast':
         fig = fig_forecast
@@ -95,8 +100,6 @@ def trend(shat, type):
         fig = fig_param
     elif type == 'comps':
         fig = fig_comp
-
-    fig.suptitle(f"{shat.title()}", fontsize=16, y=1.05)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
