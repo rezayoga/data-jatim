@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="emerald">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 
-<body class="font-quicksand bg-white">
+<body class="font-quicksand">
     <div class="card w-full p-5">
         <div class="card-body">
             <h2 class="card-title">REALISASI PROGRES PENDAFTARAN TANAH SISTEMATIS LENGKAP (PTSL) RUPIAH MURNI</h2>
@@ -74,10 +74,13 @@
                         <select class="select select-bordered"
                             onchange="this.options[this.selectedIndex].value && (window.location = '?shat=' + this.options[this.selectedIndex].value);">
                             <option disabled selected>Pilih</option>
-                            <option {{ 'selected="selected"' if shat == 'puldadis' else pass }} value="puldadis">Puldadis</option>
-                            <option {{ 'selected="selected"' if shat == 'pemberkasan' else pass }} value="pemberkasan">Pemberkasan</option>
-                            <option {{ 'selected="selected"' if shat == 'k1' else pass }} value="k1">K1</option>
-                            <option {{ 'selected="selected"' if shat == 'unggah_bt' else pass }} value="unggah_bt">Unggah BT</option>
+                            <option {{ 'selected="selected"' if shat=='puldadis' else pass }} value="puldadis">Puldadis
+                            </option>
+                            <option {{ 'selected="selected"' if shat=='pemberkasan' else pass }} value="pemberkasan">
+                                Pemberkasan</option>
+                            <option {{ 'selected="selected"' if shat=='k1' else pass }} value="k1">K1</option>
+                            <option {{ 'selected="selected"' if shat=='unggah_bt' else pass }} value="unggah_bt">Unggah
+                                BT</option>
                         </select>
                     </label>
 
@@ -231,6 +234,25 @@
             </p>
         </div>
     </div>
+
+
+
+    <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+        <div class="items-center grid-flow-col">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                </path>
+            </svg>
+            <p>Crafted by: Reza Yogaswara</p>
+        </div>
+        <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+            <a href="https://me.rezayogaswara.dev" target="_blank"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>
