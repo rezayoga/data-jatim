@@ -48,8 +48,8 @@ class DevelopmentConfig(Config):
     DEBUG = True
     #SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'dev.db')
     #SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/dev_db"
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim"
-    #SQLALCHEMY_DATABASE_URI = "mysql+pymysql://reza:password@rezayogaswara.com/db_data_jatim"
+    #SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://reza:password@rezayogaswara.com/db_data_jatim"
 
 
 class TestingConfig(Config):

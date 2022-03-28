@@ -1,5 +1,5 @@
 from . import main_blueprint
-from app.models import Ptsl
+from app.models import Ptsl, KualitasDataLengkap, DataSiapElektronik, RekapWarkahDigital
 import io
 import random
 from flask import render_template, abort, redirect, url_for, Response, request
@@ -22,7 +22,8 @@ time.tzset()
 
 @main_blueprint.route('/')
 def index():
-    return redirect(url_for('main.ptsl'))
+    abort(404)
+    # return redirect(url_for('main.ptsl'))
 
 
 @main_blueprint.route('/ptsl', defaults={'year': None, 'month': None, 'date': None})
@@ -49,10 +50,10 @@ def ptsl(year=None, month=None, date=None):
 
 @main_blueprint.route('/ptsl/graph/<shat>/<type>')
 def trend(shat, type):
-    mysql_host = 'localhost'  # 'rezayogaswara.com'
+    mysql_host = 'localhost'  # 'rezayogaswara.com' #
     mysql_port = 3306
-    mysql_user = 'root'  # 'reza'
-    mysql_password = 'rezareza1985'  # 'password'
+    mysql_user = 'root'  # 'reza' #
+    mysql_password = 'rezareza1985'  # 'password' #
     mysql_database = 'db_data_jatim'
 
     config_mysql = {
@@ -116,3 +117,44 @@ def create_figure():
 @main_blueprint.route('/admin')
 def admin():
     abort(500)
+
+
+@main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
+@main_blueprint.route('/transformasi_digital/<year>/<month>', defaults={'date': None})
+@main_blueprint.route('/transformasi_digital/<year>/<month>/<date>')
+def transformasi_digital(year=None, month=None, date=None):
+    y = time.strftime('%Y')
+    m = time.strftime('%m')
+    d = time.strftime('%d')
+
+    kdl = KualitasDataLengkap.query.filter_by(y=y, m=m, d=d).all()
+    if year != None and month != None and date != None:
+        y = year
+        m = month
+        d = date
+        kdl = KualitasDataLengkap.query.filter_by(
+            y=year, m=month, d=date).all()
+    elif year != None and month != None and date == None:
+        abort(404)
+
+    dse = DataSiapElektronik.query.filter_by(y=y, m=m, d=d).all()
+    if year != None and month != None and date != None:
+        y = year
+        m = month
+        d = date
+        dse = DataSiapElektronik.query.filter_by(
+            y=year, m=month, d=date).all()
+    elif year != None and month != None and date == None:
+        abort(404)
+
+    rwd = RekapWarkahDigital.query.filter_by(y=y, m=m, d=d).all()
+    if year != None and month != None and date != None:
+        y = year
+        m = month
+        d = date
+        rwd = RekapWarkahDigital.query.filter_by(
+            y=year, m=month, d=date).all()
+    elif year != None and month != None and date == None:
+        abort(404)
+
+    return render_template('index_transformasi_digital.html', kdl=kdl, dse=dse, rwd=rwd, y=y, m=m, d=d, base_url='/transformasi_digital')
