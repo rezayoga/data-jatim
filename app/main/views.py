@@ -22,8 +22,8 @@ time.tzset()
 
 @main_blueprint.route('/')
 def index():
-    abort(404)
-    # return redirect(url_for('main.ptsl'))
+    # abort(404)
+    return redirect(url_for('main.ptsl'))
 
 
 @main_blueprint.route('/ptsl', defaults={'year': None, 'month': None, 'date': None})
