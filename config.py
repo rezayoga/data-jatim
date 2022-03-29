@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Find the absolute file path to the top level project directory
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -32,7 +33,7 @@ class Config:
     MAIL_USERNAME = 'me@rezayogaswara.com'
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', default='Rezay0ga@85')
     MAIL_DEFAULT_SENDER = 'me@rezayogaswara.com'
-    #MAIL_DEFAULT_SENDER = os.getenv('MAIL_USERNAME', default='Reza Yogaswara')
+    # MAIL_DEFAULT_SENDER = os.getenv('MAIL_USERNAME', default='Reza Yogaswara')
     MAIL_SUPPRESS_SEND = False
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -46,10 +47,10 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    #SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'dev.db')
-    #SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/dev_db"
-    #SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim"
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://reza:password@rezayogaswara.com/db_data_jatim"
+    # SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'dev.db')
+    # SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/dev_db"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim"
+    # SQLALCHEMY_DATABASE_URI = "mysql+pymysql://reza:password@rezayogaswara.com/db_data_jatim"
 
 
 class TestingConfig(Config):
@@ -57,7 +58,9 @@ class TestingConfig(Config):
     WTF_CSRF_ENABLED = False
     MAIL_SUPPRESS_SEND = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'test.db')
-   # SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/test_db"
+
+
+# SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/test_db"
 
 
 class ProductionConfig(Config):
