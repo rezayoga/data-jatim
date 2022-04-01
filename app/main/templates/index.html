@@ -195,6 +195,12 @@
                             {%
                             set unggah_bt = result.unggah_bt|int
                             %}
+                            {%
+                            set progres_puldadis_hari_ini = puldadis - puldadis_kemarin
+                            %}
+                            {%
+                            set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int
+                            %}
 
 
                             <tr class="hover">
@@ -207,7 +213,7 @@
                                 <td class="text-right">{{ result.pemetaan }}</td>
                                 <td class="text-right text-amber-700">{{ puldadis_kemarin }}</td>
                                 <td class="text-right">{{ puldadis }}</td>
-                                <td class="text-right text-emerald-700">{{ puldadis - puldadis_kemarin}} / {{ ((target_shat - puldadis)/days)|round(method='ceil')|int }}</td>
+                                <td class="text-right {% if progres_puldadis_hari_ini > target_harian_puldadis %} text-emerald-700 {% else %} text-red-700">{{ progres_puldadis_hari_ini }} / {{ target_harian_puldadis }}</td>
                                 <td class="text-right text-amber-700">{{ pemberkasan_kemarin }}</td>
                                 <td class="text-right">{{ pemberkasan }}</td>
                                 <td class="text-right text-emerald-700">{{ days }}</td>
