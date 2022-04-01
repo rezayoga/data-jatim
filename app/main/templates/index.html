@@ -149,14 +149,14 @@
                                 <th class="sticky top-0">Potensi K1</th>
                                 <th class="sticky top-0 text-amber-700">K1 H-1</th>
                                 <th class="sticky top-0">K1</th>
-                                <th class="sticky top-0 text-emerald-700">Progres<br />K1<br />Pemberkasan / Target Harian</th>
+                                <th class="sticky top-0 text-emerald-700">Progres<br />K1<br />K1 / Target Harian</th>
                                 <th class="sticky top-0">K2</th>
                                 <th class="sticky top-0">K3.1/K3.2/K3.3</th>
                                 <th class="sticky top-0">K4</th>
                                 <th class="sticky top-0">KW456</th>
                                 <th class="sticky top-0 text-amber-700">UBT H-1</th>
                                 <th class="sticky top-0">UBT</th>
-                                <th class="sticky top-0 text-emerald-700">Progres<br />UBT<br />Pemberkasan / Target Harian</th>
+                                <th class="sticky top-0 text-emerald-700">Progres<br />UBT<br />UBT / Target Harian</th>
                                 <th class="sticky top-0">Siap Diserahkan/Diserahkan</th>
                                 <th class="sticky top-0">K1 PBT Sblmnya</th>
                                 <th class="sticky top-0">% Cap. PBT</th>
@@ -193,13 +193,31 @@
                             set k1 = result.k1|int
                             %}
                             {%
-                            set unggah_bt = result.unggah_bt|int
+                            set ubt = result.unggah_bt|int
                             %}
                             {%
                             set progres_puldadis_hari_ini = puldadis - puldadis_kemarin
                             %}
                             {%
                             set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int
+                            %}
+                            {%
+                            set progres_pemberkasan_hari_ini = pemberkasan - pemberkasan_kemarin
+                            %}
+                            {%
+                            set target_harian_pemberkasan = ((puldadis - pemberkasan)/days)|round(method='ceil')|int
+                            %}
+                            {%
+                            set progres_k1_hari_ini = k1 - k1_kemarin
+                            %}
+                            {%
+                            set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int
+                            %}
+                            {%
+                            set progres_ubt_hari_ini = ubt - ubt_kemarin
+                            %}
+                            {%
+                            set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int
                             %}
 
 
@@ -216,18 +234,18 @@
                                 <td class="text-right {% if progres_puldadis_hari_ini > target_harian_puldadis %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_puldadis_hari_ini }} / {{ target_harian_puldadis }}</td>
                                 <td class="text-right text-amber-700">{{ pemberkasan_kemarin }}</td>
                                 <td class="text-right">{{ pemberkasan }}</td>
-                                <td class="text-right text-emerald-700">{{ days }}</td>
+                                <td class="text-right {% if progres_pemberkasan_hari_ini > target_harian_pemberkasan %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_pemberkasan_hari_ini }} / {{ target_harian_pemberkasan }}</td>
                                 <td class="text-right">{{ result.potensi_k1 }}</td>
                                 <td class="text-right text-amber-700">{{ k1_kemarin }}</td>
                                 <td class="text-right">{{ k1 }}</td>
-                                <td class="text-right text-emerald-700">{{ days }}</td>
+                                <td class="text-right {% if progres_k1_hari_ini > target_harian_k1 %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_k1_hari_ini }} / {{ target_harian_k1 }}</td>
                                 <td class="text-right">{{ result.k2 }}</td>
                                 <td class="text-center">{{ result.k31 }}/{{ result.k32 }}/{{ result.k33 }}</td>
                                 <td class="text-right">{{ result.k4 }}</td>
                                 <td class="text-right">{{ result.kw456 }}</td>
                                 <td class="text-right text-amber-700">{{ ubt_kemarin }}</td>
-                                <td class="text-right">{{ unggah_bt }}</td>
-                                <td class="text-right text-emerald-700">{{ days }}</td>
+                                <td class="text-right">{{ ubt }}</td>
+                                <td class="text-right {% if progres_ubt_hari_ini > target_harian_ubt %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_ubt_hari_ini }} / {{ target_harian_ubt }}</td>
                                 <td class="text-center">{{ result.siap_diserahkan }}/{{ result.diserahkan }}</td>
                                 <td class="text-right">{{ result.k1_pbt_sebelumnya }}</td>
                                 <td class="text-right">{{ result.persen_capaian_pbt }}</td>
