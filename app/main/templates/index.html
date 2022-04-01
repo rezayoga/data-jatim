@@ -180,20 +180,20 @@
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y =
                                     '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis']}}</td>
                                 <td class="text-right">{{ result.puldadis }}</td>
-                                <td>{{ days }}</td>
+                                <td class="sticky top-0 text-emerald-700">{{ days }}</td>
                                 <td class="text-right text-amber-700">{{ get_data("SELECT pemberkasan FROM
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
                                     ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
                                     ~dy~"'")['pemberkasan']}}</td>
                                 <td class="text-right">{{ result.pemberkasan }}</td>
-                                <td>{{ days }}</td>
+                                <td class="sticky top-0 text-emerald-700">{{ days }}</td>
                                 <td class="text-right">{{ result.potensi_k1 }}</td>
                                 <td class="text-right text-amber-700">{{ get_data("SELECT k1 FROM
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
                                     ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
                                     ~dy~"'")['k1']}}</td>
                                 <td class="text-right">{{ result.k1 }}</td>
-                                <td>{{ days }}</td>
+                                <td class="sticky top-0 text-emerald-700">{{ days }}</td>
                                 <td class="text-right">{{ result.k2 }}</td>
                                 <td class="text-center">{{ result.k31 }}/{{ result.k32 }}/{{ result.k33 }}</td>
                                 <td class="text-right">{{ result.k4 }}</td>
@@ -203,7 +203,7 @@
                                     ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
                                     ~dy~"'")['unggah_bt']}}</td>
                                 <td class="text-right">{{ result.unggah_bt }}</td>
-                                <td>{{ days }}</td>
+                                <td class="sticky top-0 text-emerald-700">{{ days }}</td>
                                 <td class="text-center">{{ result.siap_diserahkan }}/{{ result.diserahkan }}</td>
                                 <td class="text-right">{{ result.k1_pbt_sebelumnya }}</td>
                                 <td class="text-right">{{ result.persen_capaian_pbt }}</td>
