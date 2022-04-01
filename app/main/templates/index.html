@@ -140,16 +140,18 @@
                                 <th class="sticky top-0">Target K4</th>
                                 <th class="sticky top-0">Survei</th>
                                 <th class="sticky top-0">Pemetaan</th>
-                                <th class="sticky top-0 text-amber-900">Puldadis h-1</th>
+                                <th class="sticky top-0 text-amber-700">Puldadis h-1</th>
                                 <th class="sticky top-0">Puldadis</th>
-                                <th class="sticky top-0 text-amber-900">Pemberkasan h-1</th>
+                                <th class="sticky top-0 text-amber-700">Pemberkasan h-1</th>
                                 <th class="sticky top-0">Pemberkasan</th>
                                 <th class="sticky top-0">Potensi K1</th>
+                                <th class="sticky top-0 text-amber-700">K1 h-1</th>
                                 <th class="sticky top-0">K1</th>
                                 <th class="sticky top-0">K2</th>
                                 <th class="sticky top-0">K3.1/K3.2/K3.3</th>
                                 <th class="sticky top-0">K4</th>
                                 <th class="sticky top-0">KW456</th>
+                                <th class="sticky top-0 text-amber-700">UBT h-1</th>
                                 <th class="sticky top-0">UBT</th>
                                 <th class="sticky top-0">Siap Diserahkan/Diserahkan</th>
                                 <th class="sticky top-0">K1 PBT Sblmnya</th>
@@ -170,21 +172,29 @@
                                 <td class="text-right">{{ result.target_k4 }}</td>
                                 <td class="text-right">{{ result.survei }}</td>
                                 <td class="text-right">{{ result.pemetaan }}</td>
-                                <td class="text-right text-amber-900">{{ get_data("SELECT puldadis FROM
+                                <td class="text-right text-amber-700">{{ get_data("SELECT puldadis FROM
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y =
                                     '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis']}}</td>
                                 <td class="text-right">{{ result.puldadis }}</td>
-                                <td class="text-right text-amber-900">{{ get_data("SELECT pemberkasan FROM
+                                <td class="text-right text-amber-700">{{ get_data("SELECT pemberkasan FROM
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
                                     ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
                                     ~dy~"'")['pemberkasan']}}</td>
                                 <td class="text-right">{{ result.pemberkasan }}</td>
                                 <td class="text-right">{{ result.potensi_k1 }}</td>
+                                <td class="text-right text-amber-700">{{ get_data("SELECT k1 FROM
+                                    tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
+                                    ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
+                                    ~dy~"'")['k1']}}</td>
                                 <td class="text-right">{{ result.k1 }}</td>
                                 <td class="text-right">{{ result.k2 }}</td>
                                 <td class="text-center">{{ result.k31 }}/{{ result.k32 }}/{{ result.k33 }}</td>
                                 <td class="text-right">{{ result.k4 }}</td>
                                 <td class="text-right">{{ result.kw456 }}</td>
+                                <td class="text-right text-amber-700">{{ get_data("SELECT unggah_bt FROM
+                                    tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
+                                    ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
+                                    ~dy~"'")['unggah_bt']}}</td>
                                 <td class="text-right">{{ result.unggah_bt }}</td>
                                 <td class="text-center">{{ result.siap_diserahkan }}/{{ result.diserahkan }}</td>
                                 <td class="text-right">{{ result.k1_pbt_sebelumnya }}</td>
@@ -219,16 +229,18 @@
                                 <th>Target K4</th>
                                 <th>Survei</th>
                                 <th>Pemetaan</th>
-                                <th>Puldadis h-1</th>
+                                <th class="text-amber-700">Puldadis h-1</th>
                                 <th>Puldadis</th>
-                                <th>Pemberkasan h-1</th>
+                                <th class="text-amber-700">Pemberkasan h-1</th>
                                 <th>Pemberkasan</th>
                                 <th>Potensi K1</th>
+                                <th class="text-amber-700">K1 H-1</th>
                                 <th>K1</th>
                                 <th>K2</th>
                                 <th>K3.1/K3.2/K3.3</th>
                                 <th>K4</th>
                                 <th>KW456</th>
+                                <th class="text-amber-700">UBT H-1</th>
                                 <th>UBT</th>
                                 <th>Siap Diserahkan/Diserahkan</th>
                                 <th>K1 PBT Sblmnya</th>
