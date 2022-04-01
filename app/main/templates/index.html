@@ -140,9 +140,9 @@
                                 <th class="sticky top-0">Target K4</th>
                                 <th class="sticky top-0">Survei</th>
                                 <th class="sticky top-0">Pemetaan</th>
-                                <th class="sticky top-0 text-amber-500">Puldadis h-1</th>
+                                <th class="sticky top-0 text-amber-900">Puldadis h-1</th>
                                 <th class="sticky top-0">Puldadis</th>
-                                <th class="sticky top-0">Pemberkasan h-1</th>
+                                <th class="sticky top-0 text-amber-900">Pemberkasan h-1</th>
                                 <th class="sticky top-0">Pemberkasan</th>
                                 <th class="sticky top-0">Potensi K1</th>
                                 <th class="sticky top-0">K1</th>
@@ -170,11 +170,11 @@
                                 <td class="text-right">{{ result.target_k4 }}</td>
                                 <td class="text-right">{{ result.survei }}</td>
                                 <td class="text-right">{{ result.pemetaan }}</td>
-                                <td class="text-right text-amber-500">{{ get_data("SELECT puldadis FROM
+                                <td class="text-right text-amber-900">{{ get_data("SELECT puldadis FROM
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y =
                                     '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis']}}</td>
                                 <td class="text-right">{{ result.puldadis }}</td>
-                                <td class="text-right text-amber-500">{{ get_data("SELECT pemberkasan FROM
+                                <td class="text-right text-amber-900">{{ get_data("SELECT pemberkasan FROM
                                     tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
                                     ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
                                     ~dy~"'")['pemberkasan']}}</td>
