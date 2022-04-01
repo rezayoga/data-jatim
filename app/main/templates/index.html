@@ -207,7 +207,7 @@
                                 <td class="text-right">{{ result.pemetaan }}</td>
                                 <td class="text-right text-amber-700">{{ puldadis_kemarin }}</td>
                                 <td class="text-right">{{ puldadis }}</td>
-                                <td class="text-right text-emerald-700">{{ puldadis - puldadis_kemarin}} / {{ (target_shat - puldadis)/days|round }}</td>
+                                <td class="text-right text-emerald-700">{{ puldadis - puldadis_kemarin}} / {{ (target_shat - puldadis)/days|round(method='ceil') }}</td>
                                 <td class="text-right text-amber-700">{{ pemberkasan_kemarin }}</td>
                                 <td class="text-right">{{ pemberkasan }}</td>
                                 <td class="text-right text-emerald-700">{{ days }}</td>
