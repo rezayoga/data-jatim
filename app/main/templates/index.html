@@ -169,18 +169,10 @@
                             {% if data|length > 0 %}
                             {% for result in data %}
                             {%
-                            set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE
-                            kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d =
-                            '" ~dy~"'")['puldadis'] | int
-                            set pemberkasan_kemarin = get_data("SELECT pemberkasan FROM tb_progres_ptsl_kanwil WHERE
-                            kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d =
-                            '" ~dy~"'")['pemberkasan'] | int
-                            set k1_kemarin = get_data("SELECT k1 FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~
-                            result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['k1'] |
-                            int
-                            set ubt_kemarin = get_data("SELECT unggah_bt FROM tb_progres_ptsl_kanwil WHERE
-                            kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d =
-                            '" ~dy~"'")['unggah_bt'] | int
+                            set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis'] | int
+                            set pemberkasan_kemarin = get_data("SELECT pemberkasan FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['pemberkasan'] | int
+                            set k1_kemarin = get_data("SELECT k1 FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['k1'] | int
+                            set ubt_kemarin = get_data("SELECT unggah_bt FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['unggah_bt'] | int
                             set target_shat = result.target_shat|int
                             set puladis = result.puldadis|int
                             set pemberkasan = result.pemberkasan|int
