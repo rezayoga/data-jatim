@@ -35,7 +35,8 @@
     <div class="card w-full p-5">
         <div class="card-body">
             <h2 class="card-title">REALISASI PROGRES PENDAFTARAN TANAH SISTEMATIS LENGKAP (PTSL) RUPIAH MURNI</h2>
-            <p>Kanwil BPN Provinsi Jawa Timur per Tanggal {{ d }}-{{ m }}-{{ y }} / {{days}} / {{yy ~ ' ' ~ my ~ ' ' ~ dy}}</p>
+            <p>Kanwil BPN Provinsi Jawa Timur per Tanggal {{ d }}-{{ m }}-{{ y }} / {{days}} / {{yy ~ ' ' ~ my ~ ' ' ~
+                dy}}</p>
             </p>
             <div class="card-actions justify-end">
                 <div class="flex items-center gap-2">
@@ -139,8 +140,9 @@
                                 <th class="sticky top-0">Target K4</th>
                                 <th class="sticky top-0">Survei</th>
                                 <th class="sticky top-0">Pemetaan</th>
-                                <th class="sticky top-0">Puldadis Kemarin</th>
+                                <th class="sticky top-0 text-amber-500">Puldadis h-1</th>
                                 <th class="sticky top-0">Puldadis</th>
+                                <th class="sticky top-0">Pemberkasan h-1</th>
                                 <th class="sticky top-0">Pemberkasan</th>
                                 <th class="sticky top-0">Potensi K1</th>
                                 <th class="sticky top-0">K1</th>
@@ -168,8 +170,14 @@
                                 <td class="text-right">{{ result.target_k4 }}</td>
                                 <td class="text-right">{{ result.survei }}</td>
                                 <td class="text-right">{{ result.pemetaan }}</td>
-                                <td class="text-right">{{ get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis']}}</td>
+                                <td class="text-right text-amber-500">{{ get_data("SELECT puldadis FROM
+                                    tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y =
+                                    '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis']}}</td>
                                 <td class="text-right">{{ result.puldadis }}</td>
+                                <td class="text-right text-amber-500">{{ get_data("SELECT pemberkasan FROM
+                                    tb_progres_ptsl_kanwil WHERE kabupaten_kota = '"
+                                    ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '"
+                                    ~dy~"'")['pemberkasan']}}</td>
                                 <td class="text-right">{{ result.pemberkasan }}</td>
                                 <td class="text-right">{{ result.potensi_k1 }}</td>
                                 <td class="text-right">{{ result.k1 }}</td>
@@ -211,8 +219,9 @@
                                 <th>Target K4</th>
                                 <th>Survei</th>
                                 <th>Pemetaan</th>
-                                <th>Puldadis Kemarin</th>
+                                <th>Puldadis h-1</th>
                                 <th>Puldadis</th>
+                                <th>Pemberkasan h-1</th>
                                 <th>Pemberkasan</th>
                                 <th>Potensi K1</th>
                                 <th>K1</th>
