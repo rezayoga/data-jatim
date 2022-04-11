@@ -198,27 +198,26 @@
                             set progres_puldadis_hari_ini = puldadis - puldadis_kemarin
                             %}
                             {%
-                            set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int
+                            set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int|abs
                             %}
                             {%
                             set progres_pemberkasan_hari_ini = pemberkasan - pemberkasan_kemarin
                             %}
                             {%
-                            set target_harian_pemberkasan = ((puldadis - pemberkasan)/days)|round(method='ceil')|int
+                            set target_harian_pemberkasan = ((puldadis - pemberkasan)/days)|round(method='ceil')|int|abs
                             %}
                             {%
                             set progres_k1_hari_ini = k1 - k1_kemarin
                             %}
                             {%
-                            set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int
+                            set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int|abs
                             %}
                             {%
                             set progres_ubt_hari_ini = ubt - ubt_kemarin
                             %}
                             {%
-                            set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int
+                            set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int|abs
                             %}
-
 
                             <tr class="hover">
                                 <td></td>
