@@ -168,7 +168,7 @@
                             {% if data|length > 0 %}
                             {% for result in data %}
                             {%
-                            set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['puldadis'] | int
+                            set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
                             %}
                             {%
                             set pemberkasan_kemarin = get_data("SELECT pemberkasan FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'")['pemberkasan'] | int
