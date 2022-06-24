@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no"/>
-    <meta name="author" content="Reza Yogaswara"/>
-    <meta name="website" content="https://me.rezayogaswara.dev"/>
-    <meta name="version" content="1.0.0"/>
-    <meta name="description" content="Data PTSL Jatim"/>
-    <meta name="keywords" content="Data PTSL Jatim"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no" />
+    <meta name="author" content="Reza Yogaswara" />
+    <meta name="website" content="https://me.rezayogaswara.dev" />
+    <meta name="version" content="1.0.0" />
+    <meta name="description" content="Data PTSL Jatim" />
+    <meta name="keywords" content="Data PTSL Jatim" />
     <title>Progres PTSL 2k22</title>
     <style>
         @import url("{{ url_for('main.static', filename='css/style.css') }}");
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
     <script src="https://unpkg.com/flowbite@1.3.4/dist/datepicker.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QGTD3TZG11"></script>
@@ -36,168 +36,108 @@
 </head>
 
 <body class="font-quicksand">
-<div class="card w-full p-5">
-    <div class="card-body">
-        <h2 class="card-title">REALISASI PROGRES PENDAFTARAN TANAH SISTEMATIS LENGKAP (PTSL) RUPIAH MURNI</h2>
-        <p>Kanwil BPN Provinsi Jawa Timur per Tanggal {{ d }}-{{ m }}-{{ y }}</p>
-        </p>
-        <div class="card-actions justify-end">
-            <div class="flex items-center gap-2">
+    <div class="card w-full p-5">
+        <div class="card-body">
+            <h2 class="card-title">REALISASI PROGRES PENDAFTARAN TANAH SISTEMATIS LENGKAP (PTSL) RUPIAH MURNI</h2>
+            <p>Kanwil BPN Provinsi Jawa Timur per Tanggal {{ d }}-{{ m }}-{{ y }}</p>
+            </p>
+            <div class="card-actions justify-end">
+                <div class="flex items-center gap-2">
 
-                <div class="form-control">
-                    <div class="input-group">
-                        <span>Laporan</span>
-                        <input datepicker datepicker-format="yyyy/mm/dd" datepicker-autohide type="text"
-                               id="datepicker" value="{{ y }}/{{ m }}/{{ d }}" class="input datepicker_laporan"
-                               placeholder="Pilih tanggal"/>
-                        <button class="btn btn-square"
+                    <div class="form-control">
+                        <div class="input-group">
+                            <span>Laporan</span>
+                            <input datepicker datepicker-format="yyyy/mm/dd" datepicker-autohide type="text"
+                                id="datepicker" value="{{ y }}/{{ m }}/{{ d }}" class="input datepicker_laporan"
+                                placeholder="Pilih tanggal" />
+                            <button class="btn btn-square"
                                 onclick="window.location.href = '{{ base_url }}/' + document.getElementById('datepicker').value">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
-                                </path>
-                            </svg>
-                        </button>
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <form class="form-control" method="post" action="{{ url_for('main.set_finish_date') }}">
-                    <div class="input-group">
-                        <span>Selesai</span>
-                        <input datepicker datepicker-format="yyyy/mm/dd" datepicker-autohide type="text"
-                               name="finish_date" value="{{ session['y'] }}/{{ session['m'] }}/{{ session['d'] }}"
-                               class="input" placeholder="Pilih tanggal"/>
-                        <button class="btn btn-square">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3">
-                                </path>
-                            </svg>
-                            </input>
-                    </div>
-                </form>
+                    <form class="form-control" method="post" action="{{ url_for('main.set_finish_date') }}">
+                        <div class="input-group">
+                            <span>Selesai</span>
+                            <input datepicker datepicker-format="yyyy/mm/dd" datepicker-autohide type="text"
+                                name="finish_date" value="{{ session['y'] }}/{{ session['m'] }}/{{ session['d'] }}"
+                                class="input" placeholder="Pilih tanggal" />
+                            <button class="btn btn-square">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3">
+                                    </path>
+                                </svg>
+                                </input>
+                        </div>
+                    </form>
 
-                <label class="input-group">
-                    <span>SHAT</span>
-                    <select class="select select-bordered"
+                    <label class="input-group">
+                        <span>SHAT</span>
+                        <select class="select select-bordered"
                             onchange="this.options[this.selectedIndex].value && (window.location = '?shat=' + this.options[this.selectedIndex].value);">
-                        <option disabled selected>Pilih</option>
-                        <option {{ 'selected="selected"' if shat=='puldadis' else pass }} value="puldadis">Puldadis
-                        </option>
-                        <option {{ 'selected="selected"' if shat=='pemberkasan' else pass }} value="pemberkasan">
-                            Pemberkasan
-                        </option>
-                        <option {{ 'selected="selected"' if shat=='k1' else pass }} value="k1">K1</option>
-                        <option {{ 'selected="selected"' if shat=='unggah_bt' else pass }} value="unggah_bt">Unggah
-                            BT
-                        </option>
-                    </select>
-                </label>
+                            <option disabled selected>Pilih</option>
+                            <option {{ 'selected="selected"' if shat=='puldadis' else pass }} value="puldadis">Puldadis
+                            </option>
+                            <option {{ 'selected="selected"' if shat=='pemberkasan' else pass }} value="pemberkasan">
+                                Pemberkasan
+                            </option>
+                            <option {{ 'selected="selected"' if shat=='k1' else pass }} value="k1">K1</option>
+                            <option {{ 'selected="selected"' if shat=='unggah_bt' else pass }} value="unggah_bt">Unggah
+                                BT
+                            </option>
+                        </select>
+                    </label>
 
-                <div class="dropdown dropdown-hover dropdown-end">
-                    <label tabindex="0" class="btn btn-square">
-                        <svg class="w-6 h-6" fill="none"
-                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div class="dropdown dropdown-hover dropdown-end">
+                        <label tabindex="0" class="btn btn-square">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                </path>
+                            </svg>
+                        </label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><label for="modal-trend" class="button modal-button">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                    Trend</labe>
+                            </li>
+                            <li><label for="modal-forecast" class="button modal-button">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
+                                        </path>
+                                    </svg>
+                                    Forecast</label></li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-square" onclick="window.location.href = '{{ base_url }}'">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
                             </path>
                         </svg>
-                    </label>
-                    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><label for="modal-trend" class="button modal-button">
-                            <svg class="w-6 h-6" fill="none"
-                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                            </svg>
-                            Trend</labe>
-                        </li>
-                        <li><label for="modal-forecast" class="button modal-button">
-                            <svg class="w-6 h-6" fill="none"
-                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
-                                </path>
-                            </svg>
-                            Forecast</label></li>
-                    </ul>
+                    </button>
                 </div>
-
-                <button class="btn btn-square" onclick="window.location.href = '{{ base_url }}'">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
-                        </path>
-                    </svg>
-                </button>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-    <div class="overflow-x-auto w-full drop-shadow-2xl">
-        <div class="flex flex-col h-screen">
-            <div class="flex-grow overflow-auto">
-                <table class="table table-zebra relative table-compact w-full">
-                    <thead>
-                    <tr>
-                        <th class="sticky top-0"></th>
-                        <th class="sticky top-0">Kab/Kota</th>
-                        <th class="sticky top-0">Target PBT</th>
-                        <th class="sticky top-0">Target SHAT</th>
-                        <th class="sticky top-0">Target K4</th>
-                        <th class="sticky top-0">Survei</th>
-                        <th class="sticky top-0">Pemetaan</th>
-                        <th class="sticky top-0 text-amber-700">Puldadis H-1</th>
-                        <th class="sticky top-0">Puldadis</th>
-                        <th class="sticky top-0 text-emerald-700">Δ Puldadis / Target Harian</th>
-                        <th class="sticky top-0 text-amber-700">Pemberkasan H-1</th>
-                        <th class="sticky top-0">Pemberkasan</th>
-                        <th class="sticky top-0 text-emerald-700">Δ Pemberkasan / Target Harian</th>
-                        <th class="sticky top-0">Potensi K1</th>
-                        <th class="sticky top-0 text-amber-700">K1 H-1</th>
-                        <th class="sticky top-0">K1</th>
-                        <th class="sticky top-0 text-emerald-700">Δ K1 / Target Harian</th>
-                        <th class="sticky top-0">K2</th>
-                        <th class="sticky top-0">K3.1/K3.2/K3.3</th>
-                        <th class="sticky top-0">K4</th>
-                        <th class="sticky top-0">KW456</th>
-                        <th class="sticky top-0 text-amber-700">UBT H-1</th>
-                        <th class="sticky top-0">UBT</th>
-                        <th class="sticky top-0 text-emerald-700">Δ UBT / Target Harian</th>
-                        <th class="sticky top-0">Siap Diserahkan/Diserahkan</th>
-                        <th class="sticky top-0">K1 PBT Sblmnya</th>
-                        <th class="sticky top-0">% Cap. PBT</th>
-                        <th class="sticky top-0">% Cap. SHAT</th>
-                        <th class="sticky top-0">% Cap. K4</th>
-                        <th class="sticky top-0">Tanggal Pengambilan</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if data|length > 0 %}
-                        {% for result in data %}
-                            {% set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int %}
-                            {% set pemberkasan_kemarin = get_data("SELECT pemberkasan FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int %}
-                            {% set k1_kemarin = get_data("SELECT k1 FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int %}
-                            {% set ubt_kemarin = get_data("SELECT unggah_bt FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int %}
-                            {% set target_shat = result.target_shat|int %}
-                            {% set puldadis = result.puldadis|int %}
-                            {% set pemberkasan = result.pemberkasan|int %}
-                            {% set k1 = result.k1|int %}
-                            {% set ubt = result.unggah_bt|int %}
-                            {% set progres_puldadis_hari_ini = puldadis - puldadis_kemarin %}
-                            {% set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int|abs %}
-                            {% set progres_pemberkasan_hari_ini = pemberkasan - pemberkasan_kemarin %}
-                            {% set target_harian_pemberkasan = ((puldadis - pemberkasan)/days)|round(method='ceil')|int|abs %}
-                            {% set progres_k1_hari_ini = k1 - k1_kemarin %}
-                            {% set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int|abs %}
-                            {% set progres_ubt_hari_ini = ubt - ubt_kemarin %}
-                            {% set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int|abs %}
-=======
         <div class="overflow-x-auto w-full drop-shadow-2xl">
             <div class="flex flex-col h-screen">
                 <div class="flex-grow overflow-auto">
@@ -211,23 +151,14 @@
                                 <th class="sticky top-0">Target K4</th>
                                 <th class="sticky top-0">Survei</th>
                                 <th class="sticky top-0">Pemetaan</th>
-                                <th class="sticky top-0 text-amber-700">Puldadis H-1</th>
                                 <th class="sticky top-0">Puldadis</th>
-                                <th class="sticky top-0 text-emerald-700">Δ Puldadis / Target Harian</th>
-                                <th class="sticky top-0 text-amber-700">Pemberkasan H-1</th>
                                 <th class="sticky top-0">Pemberkasan</th>
-                                <th class="sticky top-0 text-emerald-700">Δ Pemberkasan / Target Harian</th>
                                 <th class="sticky top-0">Potensi K1</th>
-                                <th class="sticky top-0 text-amber-700">K1 H-1</th>
                                 <th class="sticky top-0">K1</th>
-                                <th class="sticky top-0 text-emerald-700">Δ K1 / Target Harian</th>
                                 <th class="sticky top-0">K2</th>
                                 <th class="sticky top-0">K3.1/K3.2/K3.3</th>
                                 <th class="sticky top-0">K4</th>
                                 <th class="sticky top-0">KW456</th>
-                                <th class="sticky top-0 text-amber-700">UBT H-1</th>
-                                <th class="sticky top-0">UBT</th>
-                                <th class="sticky top-0 text-emerald-700">Δ UBT / Target Harian</th>
                                 <th class="sticky top-0">Siap Diserahkan/Diserahkan</th>
                                 <th class="sticky top-0">K1 PBT Sblmnya</th>
                                 <th class="sticky top-0">% Cap. PBT</th>
@@ -240,18 +171,6 @@
                             {% if data|length > 0 %}
                             {% for result in data %}
                             {%
-                            set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
-                            %}
-                            {%
-                            set pemberkasan_kemarin = get_data("SELECT pemberkasan FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
-                            %}
-                            {%
-                            set k1_kemarin = get_data("SELECT k1 FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
-                            %}
-                            {%
-                            set ubt_kemarin = get_data("SELECT unggah_bt FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
-                            %}
-                            {%
                             set target_shat = result.target_shat|int
                             %}
                             {%
@@ -263,36 +182,7 @@
                             {%
                             set k1 = result.k1|int
                             %}
-                            {%
-                            set ubt = result.unggah_bt|int
-                            %}
-                            {%
-                            set progres_puldadis_hari_ini = puldadis - puldadis_kemarin
-                            %}
-                            {%
-                            set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int
-                            %}
-                            {%
-                            set progres_pemberkasan_hari_ini = pemberkasan - pemberkasan_kemarin
-                            %}
-                            {%
-                            set target_harian_pemberkasan = ((puldadis - pemberkasan)/days)|round(method='ceil')|int
-                            %}
-                            {%
-                            set progres_k1_hari_ini = k1 - k1_kemarin
-                            %}
-                            {%
-                            set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int
-                            %}
-                            {%
-                            set progres_ubt_hari_ini = ubt - ubt_kemarin
-                            %}
-                            {%
-                            set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int
-                            %}
-
->>>>>>> 8f823861d158d9b0c9550ea58700c179f8e56123
-
+                    
                             <tr class="hover">
                                 <td></td>
                                 <td>{{ result.kabupaten_kota }}</td>
@@ -301,153 +191,133 @@
                                 <td class="text-right">{{ result.target_k4 }}</td>
                                 <td class="text-right">{{ result.survei }}</td>
                                 <td class="text-right">{{ result.pemetaan }}</td>
-                                <td class="text-right text-amber-700">{{ puldadis_kemarin }}</td>
                                 <td class="text-right">{{ puldadis }}</td>
-                                <td class="text-center {% if progres_puldadis_hari_ini > target_harian_puldadis %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_puldadis_hari_ini }}
-                                    / {{ target_harian_puldadis }}</td>
-                                <td class="text-right text-amber-700">{{ pemberkasan_kemarin }}</td>
                                 <td class="text-right">{{ pemberkasan }}</td>
-                                <td class="text-center {% if progres_pemberkasan_hari_ini > target_harian_pemberkasan %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_pemberkasan_hari_ini }}
-                                    / {{ target_harian_pemberkasan }}</td>
                                 <td class="text-right">{{ result.potensi_k1 }}</td>
-                                <td class="text-right text-amber-700">{{ k1_kemarin }}</td>
                                 <td class="text-right">{{ k1 }}</td>
-                                <td class="text-center {% if progres_k1_hari_ini > target_harian_k1 %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_k1_hari_ini }}
-                                    / {{ target_harian_k1 }}</td>
                                 <td class="text-right">{{ result.k2 }}</td>
-                                <td class="text-center">{{ result.k31 }}/{{ result.k32 }}/{{ result.k33 }}</td>
+                                <td class="text-center">{{ result.k31 }}/{{ result.k32
+                                    }}/{{result.k33 }}</td>
                                 <td class="text-right">{{ result.k4 }}</td>
                                 <td class="text-right">{{ result.kw456 }}</td>
-                                <td class="text-right text-amber-700">{{ ubt_kemarin }}</td>
-                                <td class="text-right">{{ ubt }}</td>
-                                <td class="text-center {% if progres_ubt_hari_ini > target_harian_ubt %} text-emerald-700 {% else %} text-red-700 {% endif %}">{{ progres_ubt_hari_ini }}
-                                    / {{ target_harian_ubt }}</td>
-                                <td class="text-center">{{ result.siap_diserahkan }}/{{ result.diserahkan }}</td>
+                                <td class="text-center">{{ result.siap_diserahkan
+                                    }}/{{result.diserahkan }}</td>
                                 <td class="text-right">{{ result.k1_pbt_sebelumnya }}</td>
                                 <td class="text-right">{{ result.persen_capaian_pbt }}</td>
                                 <td class="text-right">{{ result.persen_capaian_shat }}</td>
                                 <td class="text-right">{{ result.persen_capaian_k4 }}</td>
                                 <td class="text-center">{{ result.created_at }}</td>
                             </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="30">
-                                <div class="w-full bg-base-100">
-                                    <figure class="w-80 hero container max-w-screen-lg mx-auto flex justify-center">
-                                        <img src="{{ url_for('main.static', filename='images/no-data.png') }}"
-                                             alt="Shoes" class="object-scale-down">
-                                    </figure>
-                                    <div class="card-body items-center text-center">
-                                        <h2 class="card-title">Tidak ada data!</h2>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="30">
+                                    <div class="w-full bg-base-100">
+                                        <figure class="w-80 hero container max-w-screen-lg mx-auto flex justify-center">
+                                            <img src="{{ url_for('main.static', filename='images/no-data.png') }}" alt="Shoes"
+                                                class="object-scale-down">
+                                        </figure>
+                                        <div class="card-body items-center text-center">
+                                            <h2 class="card-title">Tidak ada data!</h2>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>Kab/Kota</th>
-                        <th>Target PBT</th>
-                        <th>Target SHAT</th>
-                        <th>Target K4</th>
-                        <th>Survei</th>
-                        <th>Pemetaan</th>
-                        <th class="text-amber-700">Puldadis H-1</th>
-                        <th>Puldadis</th>
-                        <th class="text-emerald-700">Δ Puldadis / Target Harian</th>
-                        <th class="text-amber-700">Pemberkasan H-1</th>
-                        <th>Pemberkasan</th>
-                        <th class="text-emerald-700">Δ Pemberkasan / Target Harian</th>
-                        <th>Potensi K1</th>
-                        <th class="text-amber-700">K1 H-1</th>
-                        <th>K1</th>
-                        <th class="text-emerald-700">Δ K1 / Target Harian</th>
-                        <th>K2</th>
-                        <th>K3.1/K3.2/K3.3</th>
-                        <th>K4</th>
-                        <th>KW456</th>
-                        <th class="text-amber-700">UBT H-1</th>
-                        <th>UBT</th>
-                        <th class="text-emerald-700">Δ UBT / Target Harian</th>
-                        <th>Siap Diserahkan/Diserahkan</th>
-                        <th>K1 PBT Sblmnya</th>
-                        <th>% Cap. PBT</th>
-                        <th>% Cap. SHAT</th>
-                        <th>% Cap. K4</th>
-                        <th>Tanggal Pengambilan</th>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<input type="checkbox" id="modal-trend" class="modal-toggle">
-<div class="modal w-full">
-    <div class="modal-box relative">
-        <label for="modal-trend" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-lg font-bold">Trend Progres {{ shat|title }} PTSL Jatim</h3>
-        <p class="py-1">
-            <img src="/ptsl/graph/{{ shat }}/params" alt="Trend Progres PTSL Jatim">
-        </p>
-    </div>
-</div>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th class="sticky top-0"></th>
+                                <th class="sticky top-0">Kab/Kota</th>
+                                <th class="sticky top-0">Target PBT</th>
+                                <th class="sticky top-0">Target SHAT</th>
+                                <th class="sticky top-0">Target K4</th>
+                                <th class="sticky top-0">Survei</th>
+                                <th class="sticky top-0">Pemetaan</th>
+                                <th class="sticky top-0">Puldadis</th>
+                                <th class="sticky top-0">Pemberkasan</th>
+                                <th class="sticky top-0">Potensi K1</th>
+                                <th class="sticky top-0">K1</th>
+                                <th class="sticky top-0">K2</th>
+                                <th class="sticky top-0">K3.1/K3.2/K3.3</th>
+                                <th class="sticky top-0">K4</th>
+                                <th class="sticky top-0">KW456</th>
+                                <th class="sticky top-0">Siap Diserahkan/Diserahkan</th>
+                                <th class="sticky top-0">K1 PBT Sblmnya</th>
+                                <th class="sticky top-0">% Cap. PBT</th>
+                                <th class="sticky top-0">% Cap. SHAT</th>
+                                <th class="sticky top-0">% Cap. K4</th>
+                                <th class="sticky top-0">Tanggal Pengambilan</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <input type="checkbox" id="modal-trend" class="modal-toggle">
+                <div class="modal w-full">
+                    <div class="modal-box relative">
+                        <label for="modal-trend" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                        <h3 class="text-lg font-bold">Trend Progres {{ shat|title }} PTSL Jatim</h3>
+                        <p class="py-1">
+                            <img src="/ptsl/graph/{{ shat }}/params" alt="Trend Progres PTSL Jatim">
+                        </p>
+                    </div>
+                </div>
 
-<input type="checkbox" id="modal-forecast" class="modal-toggle">
-<div class="modal w-full">
-    <div class="modal-box relative">
-        <label for="modal-forecast" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-lg font-bold">Forecast Progres {{ shat|title }} PTSL Jatim</h3>
-        <p class="py-1">
-            <img src="/ptsl/graph/{{ shat }}/forecast" alt="Forecast Progres PTSL Jatim">
-        </p>
-    </div>
-</div>
+                <input type="checkbox" id="modal-forecast" class="modal-toggle">
+                <div class="modal w-full">
+                    <div class="modal-box relative">
+                        <label for="modal-forecast" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                        <h3 class="text-lg font-bold">Forecast Progres {{ shat|title }} PTSL Jatim</h3>
+                        <p class="py-1">
+                            <img src="/ptsl/graph/{{ shat }}/forecast" alt="Forecast Progres PTSL Jatim">
+                        </p>
+                    </div>
+                </div>
 
-<footer class="footer items-center p-4 bg-neutral text-neutral-content">
-    <div class="items-center grid-flow-col">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-             xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
-            </path>
-        </svg>
-        <p>Crafted by: Reza Yogaswara</p>
-        <a href="https://me.rezayogaswara.dev" target="_blank">
-            <svg class="w-5 h-5" fill="none"
-                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-            </svg>
-        </a>
-    </div>
-    <div class="grid-flow-col items-center md:place-self-center md:justify-self-end gap-4">
-        <p>Built using:</p>
-        <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank" rel="noopener noreferrer">
-            <img src="{{ url_for('main.static', filename='images/flask.png') }}" alt="Flask" class="h-8">
-        </a>
-        <a href="https://pytorch.org" target="_blank" rel="noopener noreferrer">
-            <img src="{{ url_for('main.static', filename='images/pytorch.png') }}" alt="PyTorch" class="h-5">
-        </a>
-        <a href="https://neuralprophet.com" target="_blank" rel="noopener noreferrer">
-            <img src="{{ url_for('main.static', filename='images/neural-prophet.png') }}" alt="NeuralProphet"
-                 class="h-8">
-        </a>
-        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 248 31" class="text-slate-900 dark:text-white h-3">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
-                      fill="#38bdf8"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M76.546 12.825h-4.453v8.567c0 2.285 1.508 2.249 4.453 2.106v3.463c-5.962.714-8.332-.928-8.332-5.569v-8.567H64.91V9.112h3.304V4.318l3.879-1.143v5.937h4.453v3.713zM93.52 9.112h3.878v17.849h-3.878v-2.57c-1.365 1.891-3.484 3.034-6.285 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.285 2.999V9.112zm-5.674 14.636c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm16.016-17.313c-1.364 0-2.477-1.142-2.477-2.463a2.475 2.475 0 012.477-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.879v17.849h-3.879zm8.368 0V.9h3.878v26.06h-3.878zm29.053-17.849h4.094l-5.638 17.849h-3.807l-3.735-12.03-3.771 12.03h-3.806l-5.639-17.849h4.094l3.484 12.315 3.771-12.315h3.699l3.734 12.315 3.52-12.315zm8.906-2.677c-1.365 0-2.478-1.142-2.478-2.463a2.475 2.475 0 012.478-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.878v17.849h-3.878zm17.812-18.313c4.022 0 6.895 2.713 6.895 7.354V26.96h-3.878V16.394c0-2.713-1.58-4.14-4.022-4.14-2.55 0-4.561 1.499-4.561 5.14v9.567h-3.879V9.112h3.879v2.285c1.185-1.856 3.124-2.749 5.566-2.749zm25.282-6.675h3.879V26.96h-3.879v-2.57c-1.364 1.892-3.483 3.034-6.284 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.284 2.999V1.973zm-5.674 21.775c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm22.553 3.677c-5.423 0-9.481-4.105-9.481-9.389 0-5.318 4.058-9.388 9.481-9.388 3.519 0 6.572 1.82 8.008 4.605l-3.34 1.928c-.79-1.678-2.549-2.749-4.704-2.749-3.16 0-5.566 2.392-5.566 5.604 0 3.213 2.406 5.605 5.566 5.605 2.155 0 3.914-1.107 4.776-2.749l3.34 1.892c-1.508 2.82-4.561 4.64-8.08 4.64zm14.472-13.387c0 3.249 9.661 1.285 9.661 7.89 0 3.57-3.125 5.497-7.003 5.497-3.591 0-6.177-1.607-7.326-4.177l3.34-1.927c.574 1.606 2.011 2.57 3.986 2.57 1.724 0 3.052-.571 3.052-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.909-5.462 6.572-5.462 2.945 0 5.387 1.357 6.644 3.713l-3.268 1.82c-.647-1.392-1.904-2.035-3.376-2.035-1.401 0-2.622.607-2.622 1.892zm16.556 0c0 3.249 9.66 1.285 9.66 7.89 0 3.57-3.124 5.497-7.003 5.497-3.591 0-6.176-1.607-7.326-4.177l3.34-1.927c.575 1.606 2.011 2.57 3.986 2.57 1.724 0 3.053-.571 3.053-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.908-5.462 6.572-5.462 2.944 0 5.386 1.357 6.643 3.713l-3.268 1.82c-.646-1.392-1.903-2.035-3.375-2.035-1.401 0-2.622.607-2.622 1.892z"
-                      fill="currentColor"></path>
-            </svg>
-        </a>
-    </div>
-</footer>
+                <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+                    <div class="items-center grid-flow-col">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                            </path>
+                        </svg>
+                        <p>Crafted by: Reza Yogaswara</p>
+                        <a href="https://me.rezayogaswara.dev" target="_blank">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="grid-flow-col items-center md:place-self-center md:justify-self-end gap-4">
+                        <p>Built using:</p>
+                        <a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ url_for('main.static', filename='images/flask.png') }}" alt="Flask"
+                                class="h-8">
+                        </a>
+                        <a href="https://pytorch.org" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ url_for('main.static', filename='images/pytorch.png') }}" alt="PyTorch"
+                                class="h-5">
+                        </a>
+                        <a href="https://neuralprophet.com" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ url_for('main.static', filename='images/neural-prophet.png') }}"
+                                alt="NeuralProphet" class="h-8">
+                        </a>
+                        <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">
+                            <svg viewBox="0 0 248 31" class="text-slate-900 dark:text-white h-3">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
+                                    fill="#38bdf8"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M76.546 12.825h-4.453v8.567c0 2.285 1.508 2.249 4.453 2.106v3.463c-5.962.714-8.332-.928-8.332-5.569v-8.567H64.91V9.112h3.304V4.318l3.879-1.143v5.937h4.453v3.713zM93.52 9.112h3.878v17.849h-3.878v-2.57c-1.365 1.891-3.484 3.034-6.285 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.285 2.999V9.112zm-5.674 14.636c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm16.016-17.313c-1.364 0-2.477-1.142-2.477-2.463a2.475 2.475 0 012.477-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.879v17.849h-3.879zm8.368 0V.9h3.878v26.06h-3.878zm29.053-17.849h4.094l-5.638 17.849h-3.807l-3.735-12.03-3.771 12.03h-3.806l-5.639-17.849h4.094l3.484 12.315 3.771-12.315h3.699l3.734 12.315 3.52-12.315zm8.906-2.677c-1.365 0-2.478-1.142-2.478-2.463a2.475 2.475 0 012.478-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.878v17.849h-3.878zm17.812-18.313c4.022 0 6.895 2.713 6.895 7.354V26.96h-3.878V16.394c0-2.713-1.58-4.14-4.022-4.14-2.55 0-4.561 1.499-4.561 5.14v9.567h-3.879V9.112h3.879v2.285c1.185-1.856 3.124-2.749 5.566-2.749zm25.282-6.675h3.879V26.96h-3.879v-2.57c-1.364 1.892-3.483 3.034-6.284 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.284 2.999V1.973zm-5.674 21.775c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm22.553 3.677c-5.423 0-9.481-4.105-9.481-9.389 0-5.318 4.058-9.388 9.481-9.388 3.519 0 6.572 1.82 8.008 4.605l-3.34 1.928c-.79-1.678-2.549-2.749-4.704-2.749-3.16 0-5.566 2.392-5.566 5.604 0 3.213 2.406 5.605 5.566 5.605 2.155 0 3.914-1.107 4.776-2.749l3.34 1.892c-1.508 2.82-4.561 4.64-8.08 4.64zm14.472-13.387c0 3.249 9.661 1.285 9.661 7.89 0 3.57-3.125 5.497-7.003 5.497-3.591 0-6.177-1.607-7.326-4.177l3.34-1.927c.574 1.606 2.011 2.57 3.986 2.57 1.724 0 3.052-.571 3.052-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.909-5.462 6.572-5.462 2.945 0 5.387 1.357 6.644 3.713l-3.268 1.82c-.647-1.392-1.904-2.035-3.376-2.035-1.401 0-2.622.607-2.622 1.892zm16.556 0c0 3.249 9.66 1.285 9.66 7.89 0 3.57-3.124 5.497-7.003 5.497-3.591 0-6.176-1.607-7.326-4.177l3.34-1.927c.575 1.606 2.011 2.57 3.986 2.57 1.724 0 3.053-.571 3.053-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.908-5.462 6.572-5.462 2.944 0 5.386 1.357 6.643 3.713l-3.268 1.82c-.646-1.392-1.903-2.035-3.375-2.035-1.401 0-2.622.607-2.622 1.892z"
+                                    fill="currentColor"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </footer>
 </body>
 
 </html>
