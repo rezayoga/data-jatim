@@ -35,11 +35,10 @@ def ptsl(year=None, month=None, date=None):
     y = time.strftime('%Y')
     m = time.strftime('%m')
     d = time.strftime('%d')
-    
+
     #session.pop('y', None)
     #session.pop('m', None)
     #session.pop('d', None)
-    
 
     y_now = time.strftime('%Y')
     m_now = time.strftime('%m')
@@ -59,38 +58,13 @@ def ptsl(year=None, month=None, date=None):
         session['m'] = '09'
         session['d'] = '01'
 
-    finish_date = datetime.datetime(int(session['y']), int(session['m']), int(session['d']))
-    start_date = datetime.datetime(int(y_now), int(m_now), int(d_now))
-    
-    progress_date_yesterday = datetime.datetime(int(y), int(m), int(d)) - timedelta(days=1)
-    
-    #print(f"{progress_date_yesterday.strftime('%Y')}-{progress_date_yesterday.strftime('%m')}-{progress_date_yesterday.strftime('%d')}")
-    
-    
-    if finish_date < start_date:
-        abort(404)
-
-    delta = finish_date - start_date
-    days = delta.days
     # print(f"{session['y']}-{session['m']}-{session['d']}")
 
     # current_app.logger.info("Index page loading")
     shat = request.args.get('shat') if request.args.get(
         'shat') != None else 'puldadis'
-    return render_template('index.html', data=data, y=y, m=m, d=d, yy=progress_date_yesterday.strftime('%Y'), my=progress_date_yesterday.strftime('%m'), dy=progress_date_yesterday.strftime('%d'), days=days, progress_date_yesterday=progress_date_yesterday, base_url='/ptsl', shat=shat)
+    return render_template('index.html', data=data, y=y, m=m, d=d, base_url='/ptsl', shat=shat)
 
-
-@main_blueprint.route('/ptsl/set_finish_date', methods=['POST'])
-def set_finish_date():
-    
-    date = request.form['finish_date'].split("/")
-    session['y'] = date[0]
-    session['m'] = date[1]
-    session['d'] = date[2]
-    
-    #return f"{session['y']}-{session['m']}-{session['d']}"
-    
-    return redirect(url_for('main.ptsl'))
 
 @main_blueprint.route('/ptsl/graph/<shat>/<type>')
 def trend(shat, type):
