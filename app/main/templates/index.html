@@ -137,6 +137,7 @@
                 </button>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
     <div class="overflow-x-auto w-full drop-shadow-2xl">
         <div class="flex flex-col h-screen">
@@ -196,6 +197,101 @@
                             {% set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int|abs %}
                             {% set progres_ubt_hari_ini = ubt - ubt_kemarin %}
                             {% set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int|abs %}
+=======
+        <div class="overflow-x-auto w-full drop-shadow-2xl">
+            <div class="flex flex-col h-screen">
+                <div class="flex-grow overflow-auto">
+                    <table class="table table-zebra relative table-compact w-full">
+                        <thead>
+                            <tr>
+                                <th class="sticky top-0"></th>
+                                <th class="sticky top-0">Kab/Kota</th>
+                                <th class="sticky top-0">Target PBT</th>
+                                <th class="sticky top-0">Target SHAT</th>
+                                <th class="sticky top-0">Target K4</th>
+                                <th class="sticky top-0">Survei</th>
+                                <th class="sticky top-0">Pemetaan</th>
+                                <th class="sticky top-0 text-amber-700">Puldadis H-1</th>
+                                <th class="sticky top-0">Puldadis</th>
+                                <th class="sticky top-0 text-emerald-700">Δ Puldadis / Target Harian</th>
+                                <th class="sticky top-0 text-amber-700">Pemberkasan H-1</th>
+                                <th class="sticky top-0">Pemberkasan</th>
+                                <th class="sticky top-0 text-emerald-700">Δ Pemberkasan / Target Harian</th>
+                                <th class="sticky top-0">Potensi K1</th>
+                                <th class="sticky top-0 text-amber-700">K1 H-1</th>
+                                <th class="sticky top-0">K1</th>
+                                <th class="sticky top-0 text-emerald-700">Δ K1 / Target Harian</th>
+                                <th class="sticky top-0">K2</th>
+                                <th class="sticky top-0">K3.1/K3.2/K3.3</th>
+                                <th class="sticky top-0">K4</th>
+                                <th class="sticky top-0">KW456</th>
+                                <th class="sticky top-0 text-amber-700">UBT H-1</th>
+                                <th class="sticky top-0">UBT</th>
+                                <th class="sticky top-0 text-emerald-700">Δ UBT / Target Harian</th>
+                                <th class="sticky top-0">Siap Diserahkan/Diserahkan</th>
+                                <th class="sticky top-0">K1 PBT Sblmnya</th>
+                                <th class="sticky top-0">% Cap. PBT</th>
+                                <th class="sticky top-0">% Cap. SHAT</th>
+                                <th class="sticky top-0">% Cap. K4</th>
+                                <th class="sticky top-0">Tanggal Pengambilan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if data|length > 0 %}
+                            {% for result in data %}
+                            {%
+                            set puldadis_kemarin = get_data("SELECT puldadis FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
+                            %}
+                            {%
+                            set pemberkasan_kemarin = get_data("SELECT pemberkasan FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
+                            %}
+                            {%
+                            set k1_kemarin = get_data("SELECT k1 FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
+                            %}
+                            {%
+                            set ubt_kemarin = get_data("SELECT unggah_bt FROM tb_progres_ptsl_kanwil WHERE kabupaten_kota = '" ~ result.kabupaten_kota ~"' AND y = '" ~yy~"' AND m = '" ~my~"' AND d = '" ~dy~"'") | int
+                            %}
+                            {%
+                            set target_shat = result.target_shat|int
+                            %}
+                            {%
+                            set puldadis = result.puldadis|int
+                            %}
+                            {%
+                            set pemberkasan = result.pemberkasan|int
+                            %}
+                            {%
+                            set k1 = result.k1|int
+                            %}
+                            {%
+                            set ubt = result.unggah_bt|int
+                            %}
+                            {%
+                            set progres_puldadis_hari_ini = puldadis - puldadis_kemarin
+                            %}
+                            {%
+                            set target_harian_puldadis = ((target_shat - puldadis)/days)|round(method='ceil')|int
+                            %}
+                            {%
+                            set progres_pemberkasan_hari_ini = pemberkasan - pemberkasan_kemarin
+                            %}
+                            {%
+                            set target_harian_pemberkasan = ((puldadis - pemberkasan)/days)|round(method='ceil')|int
+                            %}
+                            {%
+                            set progres_k1_hari_ini = k1 - k1_kemarin
+                            %}
+                            {%
+                            set target_harian_k1 = ((pemberkasan - k1)/days)|round(method='ceil')|int
+                            %}
+                            {%
+                            set progres_ubt_hari_ini = ubt - ubt_kemarin
+                            %}
+                            {%
+                            set target_harian_ubt = ((k1 - ubt)/days)|round(method='ceil')|int
+                            %}
+
+>>>>>>> 8f823861d158d9b0c9550ea58700c179f8e56123
 
                             <tr class="hover">
                                 <td></td>
