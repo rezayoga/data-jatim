@@ -162,7 +162,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     }
 
     connection = pymysql.connect(**config_mysql)
-    results = None
+    data = None
     try:
         with connection.cursor() as cur:
             #sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
@@ -170,11 +170,11 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
 
             sql = "SELECT * FROM `tb_transformasi_digital_data_siap_elektronik`"
             cur.execute(sql)
-            results = cur.fetchall()
+            data = cur.fetchall()
     finally:
         connection.close()
         
-    return render_template('index_transformasi_digital_data_siap_elektronik.html', results=results, y=y, m=m, d=d, base_url='/transformasi_digital/data_siap_elektronik')
+    return render_template('index_transformasi_digital_data_siap_elektronik.html', data=data, y=y, m=m, d=d, base_url='/transformasi_digital/data_siap_elektronik')
 
 
 @main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
