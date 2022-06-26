@@ -149,7 +149,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     mysql_port = 3306
     mysql_user = 'reza'  # 'reza' #
     mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
-    mysql_database = 'db_data_jatim'
+    mysql_database = 'db_transformasi_digital'
 
     config_mysql = {
         "host": mysql_host,
