@@ -148,7 +148,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
     mysql_port = 3306
     mysql_user = 'reza'  # 'reza' #
-    mysql_password = 'rezareza1985'  # 'password' #
+    mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
     mysql_database = 'db_data_jatim'
 
     config_mysql = {
