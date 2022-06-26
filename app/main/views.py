@@ -165,8 +165,8 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     results = None
     try:
         with connection.cursor() as cur:
-            sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
-            cur.execute(sql)
+            #sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
+            #cur.execute(sql)
 
             sql = "SELECT * FROM `tb_transformasi_digital_data_siap_elektronik`"
             cur.execute(sql)
