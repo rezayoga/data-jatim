@@ -57,7 +57,7 @@ class TestingConfig(Config):
     TESTING = True
     WTF_CSRF_ENABLED = False
     MAIL_SUPPRESS_SEND = True
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim_test"
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://reza:password@localhost/db_data_jatim_test"
 
 
 # SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://postgres:{os.getenv('DB_PASSWORD')}@postgres:5432/test_db"
