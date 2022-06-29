@@ -30,7 +30,7 @@ bugsnag.configure(
 ### Application Factory ###
 
 
-def create_app():
+def create_app(config):
 
     app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def create_app():
     handle_exceptions(app)
 
     # Configure the flask app instance
-    CONFIG_TYPE = os.getenv('CONFIG_TYPE', default='config.DevelopmentConfig')
+    CONFIG_TYPE = os.getenv('CONFIG_TYPE', default=)
     app.config.from_object(CONFIG_TYPE)
 
     # Register blueprints
