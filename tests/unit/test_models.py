@@ -11,6 +11,6 @@ def test_new_ptsl():
     ptsl = Ptsl('Kabupaten Malang', 1, 2, 3)
     assert ptsl.kabupaten_kota == 'Kabupaten Malang'
     assert ptsl.target_pbt == 1
-    assert ptsl.target_shat != 2
+    assert ptsl.target_shat == 2
     assert ptsl.target_k4 == 3
     
