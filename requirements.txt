@@ -20,7 +20,7 @@ click-plugins==1.1.1
 click-repl==0.2.0
 convertdate==2.3.2
 cycler==0.11.0
-dataclasses==0.8
+dataclasses
 decorator==5.1.1
 defusedxml==0.7.1
 Deprecated==1.2.13
