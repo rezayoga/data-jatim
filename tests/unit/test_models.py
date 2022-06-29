@@ -1,6 +1,7 @@
 from app.models import Ptsl
 
-def test_new_ptsl():
+
+def test_new_ptsl(new_ptsl):
     """
     
     GIVEN a PTSL Model
@@ -8,9 +9,8 @@ def test_new_ptsl():
     THEN check the object it self right or wrong
     """
     
-    ptsl = Ptsl('Kabupaten Malang', 1, 2, 3)
-    assert ptsl.kabupaten_kota == 'Kabupaten Malang'
-    assert ptsl.target_pbt == 1
-    assert ptsl.target_shat == 2
-    assert ptsl.target_k4 == 3
+    assert new_ptsl.kabupaten_kota == 'Kabupaten Malang'
+    assert new_ptsl.target_pbt == 1
+    assert new_ptsl.target_shat == 2
+    assert new_ptsl.target_k4 == 3
     
