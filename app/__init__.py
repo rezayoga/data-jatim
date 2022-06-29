@@ -38,7 +38,7 @@ def create_app(config):
     handle_exceptions(app)
 
     # Configure the flask app instance
-    CONFIG_TYPE = os.getenv('CONFIG_TYPE', default=)
+    CONFIG_TYPE = os.getenv('CONFIG_TYPE', default=config)
     app.config.from_object(CONFIG_TYPE)
 
     # Register blueprints
