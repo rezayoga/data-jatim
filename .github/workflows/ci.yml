@@ -45,7 +45,6 @@ jobs:
           script: |
             cd /home/rezayogaswara/python_projects/data-jatim
             pwd
-            ls -ahl
             echo ----------------------------------------------
             source env/bin/activate
             pip install --upgrade pip
