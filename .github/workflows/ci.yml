@@ -5,7 +5,7 @@ name: CI
 
 on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
     branches:
@@ -13,7 +13,6 @@ on:
 
 jobs:
   ci-pipeline:
-
     runs-on: ubuntu-latest
 
     steps:
