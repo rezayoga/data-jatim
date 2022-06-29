@@ -21,6 +21,7 @@ def test_client():
             yield testing_client  # this is where the testing happens!
 
 
+'''
 @pytest.fixture(scope='module')
 def init_database(test_client):
     # Create the database and the database table
@@ -38,3 +39,4 @@ def init_database(test_client):
     yield  # this is where the testing happens!
 
     db.drop_all()
+'''
