@@ -66,6 +66,24 @@ class Ptsl(db.Model):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
+        
+    def __init__(self, kabupaten_kota: str, target_pbt: str, target_shat: str, target_k4:str) -> None:
+        """ Create new PTSL dummy object
+        
+        Keyword arguments:
+        argument -- kabupaten_kota, target_pbt, target_shat, target_k4
+        Return: PTSL object
+        """
+        
+        # super().__init__()
+
+        self.kabupaten_kota = kabupaten_kota
+        self.target_pbt = target_pbt
+        self.target_shat = target_shat
+        self.target_k4 = target_k4
+        
+        
 
     def __repr__(self):
         return f'<PTSL id: {self.id} - {self.kabupaten_kota} - {self.target_pbt} - {self.target_shat} - {self.target_k4} - {self.persen_capaian_pbt} - {self.persen_capaian_shat} - {self.persen_capaian_k4} - {self.created_at}>'
