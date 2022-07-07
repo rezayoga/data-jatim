@@ -1,5 +1,4 @@
 # This bluepint will deal with all user management functionality
-from . import views
 from flask import Blueprint
 from sqlalchemy import text, create_engine
 from app.models import Ptsl, KualitasDataLengkap, DataSiapElektronik, RekapWarkahDigital
@@ -17,3 +16,5 @@ def get_data(string_sql):
 
 
 main_blueprint.add_app_template_global(get_data, 'get_data')
+
+from . import views
