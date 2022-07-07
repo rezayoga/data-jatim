@@ -23,7 +23,6 @@ class Ptsl(db.Model):
     k33: str
     k4: str
     kw456: str
-    unggah_bt: str
     siap_diserahkan: str
     diserahkan: str
     k1_pbt_sebelumnya: str
@@ -52,7 +51,6 @@ class Ptsl(db.Model):
     k33 = db.Column(db.String(12), nullable=False)
     k4 = db.Column(db.String(12), nullable=False)
     kw456 = db.Column(db.String(12), nullable=False)
-    unggah_bt = db.Column(db.String(12), nullable=True)
     siap_diserahkan = db.Column(db.String(12), nullable=True)
     diserahkan = db.Column(db.String(12), nullable=True)
     k1_pbt_sebelumnya = db.Column(db.String(12), nullable=True)
