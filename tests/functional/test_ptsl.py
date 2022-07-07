@@ -1,6 +1,5 @@
 from app import create_app
 
-
 def test_home_page():
     """
     GIVEN a Flask application configured for testing
