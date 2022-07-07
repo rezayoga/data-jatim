@@ -23,6 +23,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
       - name: Deploy to my server
         uses: appleboy/ssh-action@master
         with:
@@ -36,7 +37,7 @@ jobs:
           script: |
             cd /home/rezayogaswara/python_projects/data-jatim
             pwd
-            ls -ah
+            ls -ahl
             echo ----------------------------------------------
             git pull origin main
             echo ----------------------------------------------
