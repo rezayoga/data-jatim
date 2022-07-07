@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.SERVER_CREDENTIAL_USERNAME }}
           key: ${{ secrets.SERVER_CREDENTIAL_PRIVATE_KEY }}
           port: 2211
-          passphrase: ${{ secrets.SERVER_CREDENTIAL_PASSPHRASE }}
+          #passphrase: ${{ secrets.SERVER_CREDENTIAL_PASSPHRASE }}
           script_stop: true
           debug: true
           script: |
