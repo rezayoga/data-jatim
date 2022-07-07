@@ -150,7 +150,7 @@ class KualitasDataLengkap(db.Model):
 
 @dataclass
 class DataSiapElektronik(db.Model):
-    __tablename__ = 'tb_transformasi_digital_data_siap_elektronik'
+    __tablename__ = 'tb_data_siap_elektronik'
 
     id: int
     kantor: str

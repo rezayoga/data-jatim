@@ -168,7 +168,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
             #sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
             # cur.execute(sql)
 
-            sql = "SELECT * FROM `tb_transformasi_digital_data_siap_elektronik`"
+            sql = "SELECT * FROM `tb_data_siap_elektronik`"
             cur.execute(sql)
             data = cur.fetchall()
     finally:
