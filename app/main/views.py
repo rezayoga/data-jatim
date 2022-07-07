@@ -68,10 +68,10 @@ def ptsl(year=None, month=None, date=None):
 
 @main_blueprint.route('/ptsl/graph/<shat>/<type>')
 def trend(shat, type):
-    mysql_host = 'localhost'  # 'rezayogaswara.com' #
+    mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
     mysql_port = 3306
-    mysql_user = 'root'  # 'reza' #
-    mysql_password = 'rezareza1985'  # 'password' #
+    mysql_user = 'reza'  # 'reza' #
+    mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
     mysql_database = 'db_data_jatim'
 
     config_mysql = {
@@ -149,7 +149,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     mysql_port = 3306
     mysql_user = 'reza'  # 'reza' #
     mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
-    mysql_database = 'db_transformasi_digital'
+    mysql_database = 'db_data_jatim'
 
     config_mysql = {
         "host": mysql_host,

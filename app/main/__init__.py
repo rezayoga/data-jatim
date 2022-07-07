@@ -8,7 +8,7 @@ main_blueprint = Blueprint('main', __name__, template_folder='templates', static
 
 def get_data(string_sql):
     engine = create_engine(
-        "mysql+pymysql://root:rezareza1985@localhost/db_data_jatim")
+        "mysql+pymysql://reza:pmnP_AkjWk26x2020@pusakha.id/db_data_jatim")
     sql = text(string_sql)
     result = engine.execute(sql).fetchone()
     return result
