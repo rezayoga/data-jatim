@@ -144,7 +144,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     y = time.strftime('%Y')
     m = time.strftime('%m')
     d = time.strftime('%d')
-    
+
     mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
     mysql_port = 3306
     mysql_user = 'reza'  # 'reza' #
@@ -166,14 +166,14 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     try:
         with connection.cursor() as cur:
             #sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
-            #cur.execute(sql)
+            # cur.execute(sql)
 
             sql = "SELECT * FROM `tb_transformasi_digital_data_siap_elektronik`"
             cur.execute(sql)
             data = cur.fetchall()
     finally:
         connection.close()
-        
+
     return render_template('index_transformasi_digital_data_siap_elektronik.html', data=data, y=y, m=m, d=d, base_url='/transformasi_digital/data_siap_elektronik')
 
 
