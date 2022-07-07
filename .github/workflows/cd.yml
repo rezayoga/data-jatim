@@ -36,7 +36,7 @@ jobs:
           script: |
             cd /home/rezayogaswara/python_projects/data-jatim
             pwd
-            ls -ahl
+            ls -ah
             echo ----------------------------------------------
             git pull origin main
             echo ----------------------------------------------
