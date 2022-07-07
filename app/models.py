@@ -4,7 +4,7 @@ from app import db
 
 @dataclass
 class Ptsl(db.Model):
-    __tablename__ = 'tb_progres_ptsl_kanwil'
+    __tablename__ = 'tb_progres_ptsl'
 
     id: int
     kabupaten_kota: str

@@ -88,7 +88,7 @@ def trend(shat, type):
     df = None
     try:
         SQL_Query = pd.read_sql_query(
-            f"SELECT {shat} AS y, DATE(created_at) AS ds from tb_progres_ptsl_kanwil WHERE kabupaten_kota = 'Total' ORDER BY id DESC", connection)
+            f"SELECT {shat} AS y, DATE(created_at) AS ds from tb_progres_ptsl WHERE kabupaten_kota = 'Total' ORDER BY id DESC", connection)
         df = pd.DataFrame(SQL_Query, columns=['y', 'ds'])
         print(df)
         print('The data type of df is: ', type(df))
