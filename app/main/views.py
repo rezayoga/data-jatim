@@ -136,6 +136,11 @@ def create_figure():
 def admin():
     abort(500)
 
+@main_blueprint.route('/transformasi_digital/kualitas_data_lengkap', defaults={'year': None, 'month': None, 'date': None})
+@main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>', defaults={'date': None})
+@main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>/<date>')
+def transformasi_digital_kualitas_data_lengkap(year=None, month=None, date=None):
+    return 'kualitas_data_lengkap'
 
 @main_blueprint.route('/transformasi_digital/data_siap_elektronik', defaults={'year': None, 'month': None, 'date': None})
 @main_blueprint.route('/transformasi_digital/data_siap_elektronik/<year>/<month>', defaults={'date': None})
