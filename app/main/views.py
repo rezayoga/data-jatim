@@ -137,20 +137,26 @@ def create_figure():
 def admin():
     abort(500)
 
+
 def getYear():
     return f"{time.strftime('%Y')}"
+
 
 def getMonth():
     return f"{time.strftime('%m')}"
 
+
 def getMonthOneDigit():
     return f"{int(time.strftime('%m'))}"
+
 
 def getDay():
     return f"{time.strftime('%d')}"
 
+
 def getDayOneDigit():
     return f"{int(time.strftime('%d'))}"
+
 
 print(f"{getYear()}-{getMonthOneDigit()}-{getDayOneDigit()}")
 
@@ -223,54 +229,19 @@ def download_data_siap_elektronik_excel():
     connection = pymysql.connect(**config_mysql)
     data = None
 
-     # output in bytes
+    # output in bytes
     output = io.BytesIO()
     # create WorkBook object
     workbook = xlwt.Workbook()
     # add a sheet
     sh = workbook.add_sheet(
         f'Data Siap Elektronik per {getDay()}-{getMonth()}-{getYear()}')
-    
+
     try:
         with connection.cursor() as cursor:
             cursor.execute(
                 "SELECT * FROM tb_data_siap_elektronik_per_desa ORDER by id ASC LIMIT 10")
             result = cursor.fetchall()
-
-            """
-            sql = f"INSERT INTO `tb_data_siap_elektronik_per_desa`(
-                `id_kantah`,
-                `kantor`,
-                `desa_kelurahan`,
-                `jumlah_bt`,
-                `persen_bt_valid`,
-                `jumlah_persil`,
-                `persen_persil_valid`,
-                `jumlah_siap_elektronik`,
-                `persen_siap_elektronik`,
-                `jumlah_su`,
-                `persen_su_valid`,
-                `jumlah_data_valid`,
-                `persen_data_valid`,
-                `bt_layanan_elektronik`,
-                `persen_bt_layanan_elektronik`, `y`, `m`, `d`, `created_at`) VALUES
-                ('{str(row['id_kantah'])}',
-                '{str(index)}',
-                '{ib}',
-                '{float(row_berkas['Jumlah BT'])}',
-                '{float(row_berkas['% BT Valid'])}',
-                '{float(row_berkas['Jumlah Persil'])}',
-                '{float(row_berkas['% Persil Valid'])}',
-                '{float(row_berkas['Jumlah Siap Elektronik'])}',
-                '{float(row_berkas['% Siap Elektronik'])}',
-                '{float(row_berkas['Jumlah SU'])}',
-                '{float(row_berkas['% SU Valid'])}',
-                '{float(row_berkas['Jumlah Data Valid'])}',
-                '{float(row_berkas['% Data Valid'])}',
-                '{float(row_berkas['BT Layanan Elektronik'])}',
-                '{float(row_berkas['% BT Layanan Elektronik'])}', '{getYear()}', '{getMonth()}', '{getDay()}', '{now}')"
-            """
-           
 
             # add headers
             sh.write(0, 0, 'Id Kantor')
@@ -316,42 +287,43 @@ def download_data_siap_elektronik_excel():
 
     finally:
         connection.close()
-    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": f"attachment;filename=data_siap_elektronik_{getDay()}-{getMonth()}-{getYear()}.xls"})
+    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": "attachment;filename=data_siap_elektronik.xlsx"})
+
 
 @ main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
 @ main_blueprint.route('/transformasi_digital/<year>/<month>', defaults={'date': None})
 @ main_blueprint.route('/transformasi_digital/<year>/<month>/<date>')
 def transformasi_digital(year=None, month=None, date=None):
-    y=time.strftime('%Y')
-    m=time.strftime('%m')
-    d=time.strftime('%d')
+    y = time.strftime('%Y')
+    m = time.strftime('%m')
+    d = time.strftime('%d')
 
-    kdl=KualitasDataLengkap.query.filter_by(y=y, m=m, d=d).all()
+    kdl = KualitasDataLengkap.query.filter_by(y=y, m=m, d=d).all()
     if year != None and month != None and date != None:
-        y=year
-        m=month
-        d=date
-        kdl=KualitasDataLengkap.query.filter_by(
+        y = year
+        m = month
+        d = date
+        kdl = KualitasDataLengkap.query.filter_by(
             y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
 
-    dse=DataSiapElektronik.query.filter_by(y=y, m=m, d=d).all()
+    dse = DataSiapElektronik.query.filter_by(y=y, m=m, d=d).all()
     if year != None and month != None and date != None:
-        y=year
-        m=month
-        d=date
-        dse=DataSiapElektronik.query.filter_by(
+        y = year
+        m = month
+        d = date
+        dse = DataSiapElektronik.query.filter_by(
             y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
 
-    rwd=RekapWarkahDigital.query.filter_by(y=y, m=m, d=d).all()
+    rwd = RekapWarkahDigital.query.filter_by(y=y, m=m, d=d).all()
     if year != None and month != None and date != None:
-        y=year
-        m=month
-        d=date
-        rwd=RekapWarkahDigital.query.filter_by(
+        y = year
+        m = month
+        d = date
+        rwd = RekapWarkahDigital.query.filter_by(
             y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
