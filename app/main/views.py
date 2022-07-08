@@ -317,7 +317,7 @@ def download_kualitas_data_lengkap_excel():
 
     finally:
         connection.close()
-    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": f"attachment;filename=data_siap_elektronik_{d}_{m}_{y}.xls"})
+    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": f"attachment;filename=kualitas_data_lengkap_{d}_{m}_{y}.xls"})
 
 
 @main_blueprint.route('/download/data_siap_elektronik/excel')
