@@ -235,7 +235,7 @@ def download_data_siap_elektronik_excel():
     workbook = xlwt.Workbook()
     # add a sheet
     sh = workbook.add_sheet(
-        f'Data Siap Elektronik per {getDay()}-{getMonth()}-{getYear()}')
+        f'Data Siap Elektronik')
 
     try:
         with connection.cursor() as cursor:
