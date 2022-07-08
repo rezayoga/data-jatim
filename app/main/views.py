@@ -218,12 +218,114 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     return render_template('index_transformasi_digital_data_siap_elektronik.html', data=data, y=y, m=m, d=d, base_url='/transformasi_digital/data_siap_elektronik')
 
 
+@main_blueprint.route('/download/kualitas_data_lengkap/excel')
+def download_kualitas_data_lengkap_excel():
+    y = time.strftime('%Y')
+    m = time.strftime('%m')
+    d = time.strftime('%d')
+
+    mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
+    mysql_port = 3306
+    mysql_user = 'reza'  # 'reza' #
+    mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
+    mysql_database = 'db_data_jatim'
+
+    config_mysql = {
+        "host": mysql_host,
+        "port": mysql_port,
+        "user": mysql_user,
+        "passwd": mysql_password,
+        "charset": "utf8mb4",
+        "cursorclass": pymysql.cursors.DictCursor,
+        "database": mysql_database
+    }
+
+    connection = pymysql.connect(**config_mysql)
+    data = None
+
+    # output in bytes
+    output = io.BytesIO()
+    # create WorkBook object
+    workbook = xlwt.Workbook()
+    # add a sheet
+    sh = workbook.add_sheet(
+        f'Kualitas Data Lengkap')
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT * FROM tb_kualitas_data_lengkap_per_desa ORDER by id ASC")
+            result = cursor.fetchall()
+
+            # add headers
+            sh.write(0, 0, 'Id Kantor')
+            sh.write(0, 1, 'Kantor')
+            sh.write(0, 2, 'Tipe Desa')
+            sh.write(0, 3, 'Desa / Kelurahan')
+            sh.write(0, 4, 'Kecamatan')
+            sh.write(0, 5, 'Luas Wilayah')
+            sh.write(0, 6, 'Jumlah Persil')
+            sh.write(0, 7, 'Luas Persil')
+            sh.write(0, 8, 'Luas Persil Valid')
+            sh.write(0, 9, 'Jumlah KW456')
+            sh.write(0, 10, 'Luas KW456')
+            sh.write(0, 11, 'Jumlah BT')
+            sh.write(0, 12, 'BT Valid')
+            sh.write(0, 13, 'Warkah BT')
+            sh.write(0, 14, '% BT Valid')
+            sh.write(0, 15, '% Luas Persil Valid')
+            sh.write(0, 16, '% Warkah BT')
+            sh.write(0, 17, '% NDL')
+            sh.write(0, 18, 'Potensi Desa Lengkap')
+            sh.write(0, 19, 'DDL')
+            sh.write(0, 20, 'Jumlah Desa')
+            sh.write(0, 21, 'Jumlah Persil Deliniasi')
+            sh.write(0, 22, 'Luas Persil Deliniasi')
+
+            idx = 0
+            for row in result:
+                sh.write(idx+1, 0, str(row['id_kantah']))
+                sh.write(idx+1, 1, str(row['kantor']))
+                sh.write(idx+1, 2, str(row['tipe_desa']))
+                sh.write(idx+1, 3, str(row['desa_kelurahan']))
+                sh.write(idx+1, 4, str(row['kecamatan']))
+                sh.write(idx+1, 5, str(row['luas_wilayah']))
+                sh.write(idx+1, 6, str(row['jumlah_persil']))
+                sh.write(idx+1, 7, str(row['luas_persil']))
+                sh.write(idx+1, 8, str(row['luas_persil_valid']))
+                sh.write(idx+1, 9, str(row['jumlah_kw456']))
+                sh.write(idx+1, 10, str(row['luas_kw456']))
+                sh.write(idx+1, 11, str(row['jumlah_bt']))
+                sh.write(idx+1, 12, str(row['bt_valid']))
+                sh.write(idx+1, 13, str(row['warkah_bt']))
+                sh.write(idx+1, 14, str(row['persen_bt_valid']))
+                sh.write(idx+1, 15, str(row['persen_luas_persil_valid']))
+                sh.write(idx+1, 16, str(row['persen_warkah_bt']))
+                sh.write(idx+1, 17, str(row['persen_nilai_desa_lengkap']))
+                sh.write(idx+1, 18, str(row['potensi_desa_lengkap']))
+                sh.write(idx+1, 19, str(row['deklarasi_desa_lengkap']))
+                sh.write(idx+1, 20, str(row['jumlah_desa']))
+                sh.write(idx+1, 21, str(row['jumlah_persil_deliniasi']))
+                sh.write(idx+1, 22, str(row['luas_persil_deliniasi']))
+                idx += 1
+
+            workbook.save(output)
+            output.seek(0)
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        connection.close()
+    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": f"attachment;filename=data_siap_elektronik_{d}_{m}_{y}.xls"})
+
+
 @main_blueprint.route('/download/data_siap_elektronik/excel')
 def download_data_siap_elektronik_excel():
     y = time.strftime('%Y')
     m = time.strftime('%m')
     d = time.strftime('%d')
-    
+
     mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
     mysql_port = 3306
     mysql_user = 'reza'  # 'reza' #
