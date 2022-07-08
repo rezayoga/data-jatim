@@ -221,7 +221,7 @@ def download_data_siap_elektronik_excel():
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                "SELECT * FROM tb_data_siap_elektronik_per_desa ORDER by id ASC LIMIT 1000")
+                "SELECT * FROM tb_data_siap_elektronik_per_desa ORDER by id ASC")
             result = cursor.fetchall()
 
             # add headers
