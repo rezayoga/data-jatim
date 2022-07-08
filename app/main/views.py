@@ -138,29 +138,6 @@ def admin():
     abort(500)
 
 
-def getYear():
-    return f"{time.strftime('%Y')}"
-
-
-def getMonth():
-    return f"{time.strftime('%m')}"
-
-
-def getMonthOneDigit():
-    return f"{int(time.strftime('%m'))}"
-
-
-def getDay():
-    return f"{time.strftime('%d')}"
-
-
-def getDayOneDigit():
-    return f"{int(time.strftime('%d'))}"
-
-
-print(f"{getYear()}-{getMonthOneDigit()}-{getDayOneDigit()}")
-
-
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap', defaults={'year': None, 'month': None, 'date': None})
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>', defaults={'date': None})
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>/<date>')
