@@ -187,6 +187,10 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
 
 @main_blueprint.route('/download/data_siap_elektronik/excel')
 def download_data_siap_elektronik_excel():
+    y = time.strftime('%Y')
+    m = time.strftime('%m')
+    d = time.strftime('%d')
+    
     mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
     mysql_port = 3306
     mysql_user = 'reza'  # 'reza' #
@@ -217,7 +221,7 @@ def download_data_siap_elektronik_excel():
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                "SELECT * FROM tb_data_siap_elektronik_per_desa ORDER by id ASC LIMIT 10")
+                "SELECT * FROM tb_data_siap_elektronik_per_desa ORDER by id ASC LIMIT 1000")
             result = cursor.fetchall()
 
             # add headers
@@ -264,7 +268,7 @@ def download_data_siap_elektronik_excel():
 
     finally:
         connection.close()
-    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": "attachment;filename=data_siap_elektronik.xls"})
+    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": f"attachment;filename=data_siap_elektronik_{d}_{m}_{y}.xls"})
 
 
 @ main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
