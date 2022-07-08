@@ -1,6 +1,7 @@
 from . import main_blueprint
 from app.models import Ptsl, KualitasDataLengkap, DataSiapElektronik, RekapWarkahDigital
 import io
+import xlwt
 import random
 from flask import render_template, abort, redirect, url_for, Response, request, session
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -36,9 +37,9 @@ def ptsl(year=None, month=None, date=None):
     m = time.strftime('%m')
     d = time.strftime('%d')
 
-    #session.pop('y', None)
-    #session.pop('m', None)
-    #session.pop('d', None)
+    # session.pop('y', None)
+    # session.pop('m', None)
+    # session.pop('d', None)
 
     y_now = time.strftime('%Y')
     m_now = time.strftime('%m')
@@ -117,7 +118,7 @@ def trend(shat, type):
     elif type == 'comps':
         fig = fig_comp
 
-    #fig.suptitle(f"{shat.upper()}", fontsize=16, y=0.8)
+    # fig.suptitle(f"{shat.upper()}", fontsize=16, y=0.8)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
     return Response(output.getvalue(), mimetype='image/png')
@@ -136,11 +137,19 @@ def create_figure():
 def admin():
     abort(500)
 
+
+def getCurrentDate(withTime=False):
+    if (withTime):
+        return '%s-%s-%s %s:%s:%s' % (time.strftime('%Y'), time.strftime('%m'), time.strftime('%d'), time.strftime('%H'), time.strftime('%M'), time.strftime('%S'))
+    return '%s-%s-%s' % (time.strftime('%d'), month[int(time.strftime('%m')) - 1].upper(), now.year)
+
+
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap', defaults={'year': None, 'month': None, 'date': None})
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>', defaults={'date': None})
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>/<date>')
 def transformasi_digital_kualitas_data_lengkap(year=None, month=None, date=None):
     return 'kualitas_data_lengkap'
+
 
 @main_blueprint.route('/transformasi_digital/data_siap_elektronik', defaults={'year': None, 'month': None, 'date': None})
 @main_blueprint.route('/transformasi_digital/data_siap_elektronik/<year>/<month>', defaults={'date': None})
@@ -170,7 +179,7 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     data = None
     try:
         with connection.cursor() as cur:
-            #sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
+            # sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
             # cur.execute(sql)
 
             sql = "SELECT * FROM `tb_data_siap_elektronik`"
@@ -182,40 +191,157 @@ def transformasi_digital_data_siap_elektronik(year=None, month=None, date=None):
     return render_template('index_transformasi_digital_data_siap_elektronik.html', data=data, y=y, m=m, d=d, base_url='/transformasi_digital/data_siap_elektronik')
 
 
-@main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
-@main_blueprint.route('/transformasi_digital/<year>/<month>', defaults={'date': None})
-@main_blueprint.route('/transformasi_digital/<year>/<month>/<date>')
+@main_blueprint.route('/download/data_siap_elektronik/excel')
+def download_data_siap_elektronik_excel():
+    mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
+    mysql_port = 3306
+    mysql_user = 'reza'  # 'reza' #
+    mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
+    mysql_database = 'db_data_jatim'
+
+    config_mysql = {
+        "host": mysql_host,
+        "port": mysql_port,
+        "user": mysql_user,
+        "passwd": mysql_password,
+        "charset": "utf8mb4",
+        "cursorclass": pymysql.cursors.DictCursor,
+        "database": mysql_database
+    }
+
+    connection = pymysql.connect(**config_mysql)
+    data = None
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT * FROM tb_data_siap_elektronik_per_desa ORDER by id ASC")
+            result = cursor.fetchall()
+
+            """
+            sql = f"INSERT INTO `tb_data_siap_elektronik_per_desa`(
+                `id_kantah`,
+                `kantor`,
+                `desa_kelurahan`,
+                `jumlah_bt`,
+                `persen_bt_valid`,
+                `jumlah_persil`,
+                `persen_persil_valid`,
+                `jumlah_siap_elektronik`,
+                `persen_siap_elektronik`,
+                `jumlah_su`,
+                `persen_su_valid`,
+                `jumlah_data_valid`,
+                `persen_data_valid`,
+                `bt_layanan_elektronik`,
+                `persen_bt_layanan_elektronik`, `y`, `m`, `d`, `created_at`) VALUES
+                ('{str(row['id_kantah'])}',
+                '{str(index)}',
+                '{ib}',
+                '{float(row_berkas['Jumlah BT'])}',
+                '{float(row_berkas['% BT Valid'])}',
+                '{float(row_berkas['Jumlah Persil'])}',
+                '{float(row_berkas['% Persil Valid'])}',
+                '{float(row_berkas['Jumlah Siap Elektronik'])}',
+                '{float(row_berkas['% Siap Elektronik'])}',
+                '{float(row_berkas['Jumlah SU'])}',
+                '{float(row_berkas['% SU Valid'])}',
+                '{float(row_berkas['Jumlah Data Valid'])}',
+                '{float(row_berkas['% Data Valid'])}',
+                '{float(row_berkas['BT Layanan Elektronik'])}',
+                '{float(row_berkas['% BT Layanan Elektronik'])}', '{getYear()}', '{getMonth()}', '{getDay()}', '{now}')"
+
+            """
+            # output in bytes
+            output = io.BytesIO()
+            # create WorkBook object
+            workbook = xlwt.Workbook()
+            # add a sheet
+            sh = workbook.add_sheet(
+                f'Data Siap Elektronik per {getCurrentDate()}')
+
+            # add headers
+            sh.write(0, 0, 'Id Kantor')
+            sh.write(0, 1, 'Kantor')
+            sh.write(0, 2, 'Desa / Kelurahan')
+            sh.write(0, 3, 'Jumlah BT')
+            sh.write(0, 4, '% BT Valid')
+            sh.write(0, 5, 'Jumlah Persil')
+            sh.write(0, 6, '% Persil Valid')
+            sh.write(0, 7, 'Jumlah Siap Elektronik')
+            sh.write(0, 8, '% Siap Elektronik')
+            sh.write(0, 9, 'Jumlah SU')
+            sh.write(0, 10, '% SU Valid')
+            sh.write(0, 11, 'Jumlah Data Valid')
+            sh.write(0, 12, '% Data Valid')
+            sh.write(0, 13, 'BT Layanan Elektronik')
+            sh.write(0, 14, '% BT Layanan Elektronik')
+
+            idx = 0
+            for row in result:
+                sh.write(idx+1, 0, str(row['id_kantah']))
+                sh.write(idx+1, 1, str(row['kantor']))
+                sh.write(idx+1, 2, str(row['desa_kelurahan']))
+                sh.write(idx+1, 3, str(row['jumlah_bt']))
+                sh.write(idx+1, 4, str(row['persen_bt_valid']))
+                sh.write(idx+1, 5, str(row['jumlah_persil']))
+                sh.write(idx+1, 6, str(row['persen_persil_valid']))
+                sh.write(idx+1, 7, str(row['jumlah_siap_elektronik']))
+                sh.write(idx+1, 8, str(row['persen_siap_elektronik']))
+                sh.write(idx+1, 9, str(row['jumlah_su']))
+                sh.write(idx+1, 10, str(row['persen_su_valid']))
+                sh.write(idx+1, 11, str(row['jumlah_data_valid']))
+                sh.write(idx+1, 12, str(row['persen_data_valid']))
+                sh.write(idx+1, 13, str(row['bt_layanan_elektronik']))
+                sh.write(idx+1, 14, str(row['persen_bt_layanan_elektronik']))
+                idx += 1
+
+            workbook.save(output)
+            output.seek(0)
+
+            return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": "attachment;filename=employee_report.xls"})
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        connection.close()
+
+
+@ main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
+@ main_blueprint.route('/transformasi_digital/<year>/<month>', defaults={'date': None})
+@ main_blueprint.route('/transformasi_digital/<year>/<month>/<date>')
 def transformasi_digital(year=None, month=None, date=None):
-    y = time.strftime('%Y')
-    m = time.strftime('%m')
-    d = time.strftime('%d')
+    y=time.strftime('%Y')
+    m=time.strftime('%m')
+    d=time.strftime('%d')
 
-    kdl = KualitasDataLengkap.query.filter_by(y=y, m=m, d=d).all()
+    kdl=KualitasDataLengkap.query.filter_by(y=y, m=m, d=d).all()
     if year != None and month != None and date != None:
-        y = year
-        m = month
-        d = date
-        kdl = KualitasDataLengkap.query.filter_by(
+        y=year
+        m=month
+        d=date
+        kdl=KualitasDataLengkap.query.filter_by(
             y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
 
-    dse = DataSiapElektronik.query.filter_by(y=y, m=m, d=d).all()
+    dse=DataSiapElektronik.query.filter_by(y=y, m=m, d=d).all()
     if year != None and month != None and date != None:
-        y = year
-        m = month
-        d = date
-        dse = DataSiapElektronik.query.filter_by(
+        y=year
+        m=month
+        d=date
+        dse=DataSiapElektronik.query.filter_by(
             y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
 
-    rwd = RekapWarkahDigital.query.filter_by(y=y, m=m, d=d).all()
+    rwd=RekapWarkahDigital.query.filter_by(y=y, m=m, d=d).all()
     if year != None and month != None and date != None:
-        y = year
-        m = month
-        d = date
-        rwd = RekapWarkahDigital.query.filter_by(
+        y=year
+        m=month
+        d=date
+        rwd=RekapWarkahDigital.query.filter_by(
             y=year, m=month, d=date).all()
     elif year != None and month != None and date == None:
         abort(404)
