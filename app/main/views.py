@@ -137,11 +137,22 @@ def create_figure():
 def admin():
     abort(500)
 
+def getYear():
+    return f"{time.strftime('%Y')}"
 
-def getCurrentDate(withTime=False):
-    if (withTime):
-        return '%s-%s-%s %s:%s:%s' % (time.strftime('%Y'), time.strftime('%m'), time.strftime('%d'), time.strftime('%H'), time.strftime('%M'), time.strftime('%S'))
-    return '%s-%s-%s' % (time.strftime('%d'), month[int(time.strftime('%m')) - 1].upper(), now.year)
+def getMonth():
+    return f"{time.strftime('%m')}"
+
+def getMonthOneDigit():
+    return f"{int(time.strftime('%m'))}"
+
+def getDay():
+    return f"{time.strftime('%d')}"
+
+def getDayOneDigit():
+    return f"{int(time.strftime('%d'))}"
+
+print(f"{getYear()}-{getMonthOneDigit()}-{getDayOneDigit()}")
 
 
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap', defaults={'year': None, 'month': None, 'date': None})
@@ -257,7 +268,7 @@ def download_data_siap_elektronik_excel():
             workbook = xlwt.Workbook()
             # add a sheet
             sh = workbook.add_sheet(
-                f'Data Siap Elektronik per {getCurrentDate()}')
+                f'Data Siap Elektronik per {getDay()}-{getMonth()}-{getYear()}')
 
             # add headers
             sh.write(0, 0, 'Id Kantor')
