@@ -142,7 +142,40 @@ def admin():
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>', defaults={'date': None})
 @main_blueprint.route('/transformasi_digital/kualitas_data_lengkap/<year>/<month>/<date>')
 def transformasi_digital_kualitas_data_lengkap(year=None, month=None, date=None):
-    return 'kualitas_data_lengkap'
+    y = time.strftime('%Y')
+    m = time.strftime('%m')
+    d = time.strftime('%d')
+
+    mysql_host = 'pusakha.id'  # 'rezayogaswara.com' #
+    mysql_port = 3306
+    mysql_user = 'reza'  # 'reza' #
+    mysql_password = 'pmnP_AkjWk26x2020'  # 'password' #
+    mysql_database = 'db_data_jatim'
+
+    config_mysql = {
+        "host": mysql_host,
+        "port": mysql_port,
+        "user": mysql_user,
+        "passwd": mysql_password,
+        "charset": "utf8mb4",
+        "cursorclass": pymysql.cursors.DictCursor,
+        "database": mysql_database
+    }
+
+    connection = pymysql.connect(**config_mysql)
+    data = None
+    try:
+        with connection.cursor() as cur:
+            # sql = f"SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));"
+            # cur.execute(sql)
+
+            sql = "SELECT * FROM `tb_kualitas_data_lengkap`"
+            cur.execute(sql)
+            data = cur.fetchall()
+    finally:
+        connection.close()
+
+    return render_template('index_transformasi_digital_kualitas_data_lengkap.html', data=data, y=y, m=m, d=d, base_url='/transformasi_digital/kualitas_data_lengkap')
 
 
 @main_blueprint.route('/transformasi_digital/data_siap_elektronik', defaults={'year': None, 'month': None, 'date': None})
