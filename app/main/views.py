@@ -287,7 +287,7 @@ def download_data_siap_elektronik_excel():
 
     finally:
         connection.close()
-    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": "attachment;filename=data_siap_elektronik.xlsx"})
+    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": "attachment;filename=data_siap_elektronik.xls"})
 
 
 @ main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
