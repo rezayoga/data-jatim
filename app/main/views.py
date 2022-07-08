@@ -223,6 +223,14 @@ def download_data_siap_elektronik_excel():
     connection = pymysql.connect(**config_mysql)
     data = None
 
+     # output in bytes
+    output = io.BytesIO()
+    # create WorkBook object
+    workbook = xlwt.Workbook()
+    # add a sheet
+    sh = workbook.add_sheet(
+        f'Data Siap Elektronik per {getDay()}-{getMonth()}-{getYear()}')
+    
     try:
         with connection.cursor() as cursor:
             cursor.execute(
@@ -262,13 +270,7 @@ def download_data_siap_elektronik_excel():
                 '{float(row_berkas['BT Layanan Elektronik'])}',
                 '{float(row_berkas['% BT Layanan Elektronik'])}', '{getYear()}', '{getMonth()}', '{getDay()}', '{now}')"
             """
-            # output in bytes
-            output = io.BytesIO()
-            # create WorkBook object
-            workbook = xlwt.Workbook()
-            # add a sheet
-            sh = workbook.add_sheet(
-                f'Data Siap Elektronik per {getDay()}-{getMonth()}-{getYear()}')
+           
 
             # add headers
             sh.write(0, 0, 'Id Kantor')
@@ -309,14 +311,12 @@ def download_data_siap_elektronik_excel():
             workbook.save(output)
             output.seek(0)
 
-            return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": "attachment;filename=employee_report.xls"})
-
     except Exception as e:
         print(e)
 
     finally:
         connection.close()
-
+    return Response(output, mimetype="application/ms-excel", headers={"Content-Disposition": f"attachment;filename=data_siap_elektronik_{getDay()}-{getMonth()}-{getYear()}.xls"})
 
 @ main_blueprint.route('/transformasi_digital', defaults={'year': None, 'month': None, 'date': None})
 @ main_blueprint.route('/transformasi_digital/<year>/<month>', defaults={'date': None})
