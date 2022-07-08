@@ -250,7 +250,6 @@ def download_data_siap_elektronik_excel():
                 '{float(row_berkas['% Data Valid'])}',
                 '{float(row_berkas['BT Layanan Elektronik'])}',
                 '{float(row_berkas['% BT Layanan Elektronik'])}', '{getYear()}', '{getMonth()}', '{getDay()}', '{now}')"
-
             """
             # output in bytes
             output = io.BytesIO()
