@@ -281,6 +281,7 @@ def download_kualitas_data_lengkap_excel():
             sh.write(0, 20, 'Jumlah Desa')
             sh.write(0, 21, 'Jumlah Persil Deliniasi')
             sh.write(0, 22, 'Luas Persil Deliniasi')
+            sh.write(0, 23, 'Tanggal Pengambilan')
 
             idx = 0
             for row in result:
@@ -307,6 +308,7 @@ def download_kualitas_data_lengkap_excel():
                 sh.write(idx+1, 20, str(row['jumlah_desa']))
                 sh.write(idx+1, 21, str(row['jumlah_persil_deliniasi']))
                 sh.write(idx+1, 22, str(row['luas_persil_deliniasi']))
+                sh.write(idx+1, 23, str(row['created_at']))
                 idx += 1
 
             workbook.save(output)
@@ -375,6 +377,7 @@ def download_data_siap_elektronik_excel():
             sh.write(0, 12, '% Data Valid')
             sh.write(0, 13, 'BT Layanan Elektronik')
             sh.write(0, 14, '% BT Layanan Elektronik')
+            sh.write(0, 15, 'Tanggal Pengambilan')
 
             idx = 0
             for row in result:
@@ -393,6 +396,7 @@ def download_data_siap_elektronik_excel():
                 sh.write(idx+1, 12, str(row['persen_data_valid']))
                 sh.write(idx+1, 13, str(row['bt_layanan_elektronik']))
                 sh.write(idx+1, 14, str(row['persen_bt_layanan_elektronik']))
+                sh.write(idx+1, 15, str(row['created_at']))
                 idx += 1
 
             workbook.save(output)
