@@ -276,10 +276,10 @@ def download_kualitas_data_lengkap_excel():
             sh.write(0, 15, '% Luas Persil Valid')
             sh.write(0, 16, '% Warkah BT')
             sh.write(0, 17, '% NDL')
-            sh.write(0, 19, 'DDL')
-            sh.write(0, 21, 'Jumlah Persil Deliniasi')
-            sh.write(0, 22, 'Luas Persil Deliniasi')
-            sh.write(0, 23, 'Tanggal Pengambilan')
+            sh.write(0, 18, 'DDL')
+            sh.write(0, 19, 'Jumlah Persil Deliniasi')
+            sh.write(0, 20, 'Luas Persil Deliniasi')
+            sh.write(0, 21, 'Tanggal Pengambilan')
 
             idx = 0
             for row in result:
@@ -301,10 +301,10 @@ def download_kualitas_data_lengkap_excel():
                 sh.write(idx+1, 15, str(row['persen_luas_persil_valid']))
                 sh.write(idx+1, 16, str(row['persen_warkah_bt']))
                 sh.write(idx+1, 17, str(row['persen_nilai_desa_lengkap']))
-                sh.write(idx+1, 19, str(row['deklarasi_desa_lengkap']))
-                sh.write(idx+1, 21, str(row['jumlah_persil_deliniasi']))
-                sh.write(idx+1, 22, str(row['luas_persil_deliniasi']))
-                sh.write(idx+1, 23, str(row['created_at']))
+                sh.write(idx+1, 18, str(row['deklarasi_desa_lengkap']))
+                sh.write(idx+1, 19, str(row['jumlah_persil_deliniasi']))
+                sh.write(idx+1, 20, str(row['luas_persil_deliniasi']))
+                sh.write(idx+1, 21, str(row['created_at']))
                 idx += 1
 
             workbook.save(output)
